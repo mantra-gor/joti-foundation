@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Design tokens — "Tactical Excellence" system, see DESIGN.md */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Surfaces */
+  --color-surface: #fbf9f6;
+  --color-surface-dim: #dbdad7;
+  --color-surface-bright: #fbf9f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3f0;
+  --color-surface-container: #efeeeb;
+  --color-surface-container-high: #e9e8e5;
+  --color-surface-container-highest: #e3e2e0;
+  --color-surface-variant: #e3e2e0;
+  --color-surface-tint: #4d6453;
+  --color-on-surface: #1b1c1a;
+  --color-on-surface-variant: #434843;
+  --color-inverse-surface: #30312f;
+  --color-inverse-on-surface: #f2f1ee;
+  --color-outline: #737973;
+  --color-outline-variant: #c3c8c1;
+
+  /* Primary — Deep Forest Green */
+  --color-primary: #061b0e;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1b3022;
+  --color-on-primary-container: #819986;
+  --color-inverse-primary: #b4cdb8;
+  --color-primary-fixed: #d0e9d4;
+  --color-primary-fixed-dim: #b4cdb8;
+  --color-on-primary-fixed: #0b2013;
+  --color-on-primary-fixed-variant: #364c3c;
+
+  /* Secondary — Burnt Terracotta */
+  --color-secondary: #b32922;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fc5e50;
+  --color-on-secondary-container: #610003;
+  --color-secondary-fixed: #ffdad5;
+  --color-secondary-fixed-dim: #ffb4aa;
+  --color-on-secondary-fixed: #410001;
+  --color-on-secondary-fixed-variant: #900c0d;
+
+  /* Tertiary */
+  --color-tertiary: #271013;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #3f2427;
+  --color-on-tertiary-container: #b0898c;
+  --color-tertiary-fixed: #ffd9dc;
+  --color-tertiary-fixed-dim: #e7bcbf;
+  --color-on-tertiary-fixed: #2d1417;
+  --color-on-tertiary-fixed-variant: #5d3f42;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Base */
+  --color-background: #fbf9f6;
+  --color-on-background: #1b1c1a;
+
+  /* Accent — Emergency Amber. TODO: no hex given in DESIGN.md; placeholder below,
+     confirm against Figma's inspect panel (screenshots shift color under overlays/compression). */
+  --color-accent: #d9a15c;
+  --color-on-accent: #2b1c0a;
+
+  /* Component borders called out in DESIGN.md (Elevation & Depth, Components) */
+  --color-card-border: #e5e2de;
+  --color-input-border: #d1cdc7;
+
+  /* Fonts — registered by next/font in layout.jsx */
+  --font-display: var(--font-bricolage-grotesque);
+  --font-sans: var(--font-hanken-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Type scale */
+  --text-display-xl: 80px;
+  --text-display-xl--line-height: 88px;
+  --text-display-xl--letter-spacing: -0.04em;
+  --text-display-xl--font-weight: 800;
+
+  --text-display-xl-mobile: 48px;
+  --text-display-xl-mobile--line-height: 52px;
+  --text-display-xl-mobile--letter-spacing: -0.03em;
+  --text-display-xl-mobile--font-weight: 800;
+
+  --text-headline-lg: 48px;
+  --text-headline-lg--line-height: 56px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-lg-mobile: 32px;
+  --text-headline-lg-mobile--line-height: 40px;
+  --text-headline-lg-mobile--letter-spacing: -0.02em;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 40px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 32px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 26px;
+  --text-body-md--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 500;
+
+  --text-button: 14px;
+  --text-button--line-height: 20px;
+  --text-button--letter-spacing: 0.02em;
+  --text-button--font-weight: 600;
+
+  /* Radius — capped at 4px on buttons/inputs/cards per DESIGN.md § Shapes */
+  --radius-sm: 0.125rem;
+  --radius: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* Layout — 8px grid, 1440px max width, per DESIGN.md § Layout & Spacing */
+  --container-page: 1440px;
+  --spacing-gutter: 32px;
+  --spacing-margin-mobile: 20px;
+  --spacing-margin-tablet: 40px;
+  --spacing-margin-desktop: 80px;
+  --spacing-section-mobile: 64px;
+  --spacing-section-desktop: 120px;
+
+  /* Elevation — tonal layers and outlines, not shadows */
+  --shadow-hover: 0px 4px 20px rgba(27, 48, 34, 0.05);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
 }
