@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
+import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 const statRows = [
   { badge: "24h", label: "Response Time", description: "Average emergency deployment speed" },
@@ -64,7 +65,7 @@ export default function MeasurableChange() {
             <p className="max-w-xs font-sans text-body-md text-on-secondary/85">
               Responders trained and ready for the next call to action.
             </p>
-            <Button href="/donate" variant="cta" inverse>
+            <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta" inverse>
               Support Their Training
             </Button>
           </div>

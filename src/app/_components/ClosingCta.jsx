@@ -1,6 +1,7 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
+import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 export default function ClosingCta() {
   return (
@@ -29,7 +30,7 @@ export default function ClosingCta() {
                 needed to save lives in India&rsquo;s most vulnerable moments.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
-                <Button href="/donate" variant="cta">
+                <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta">
                   Donate Now
                 </Button>
                 <Button href="/work-with-us" variant="ghost">

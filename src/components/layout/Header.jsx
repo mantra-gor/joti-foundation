@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
+import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -66,7 +67,7 @@ export default function Header() {
           <Button href="/work-with-us" variant="ghost" size="sm">
             Volunteer
           </Button>
-          <Button href="/donate" variant="cta" size="sm">
+          <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta" size="sm">
             Donate Now
           </Button>
         </div>
@@ -156,7 +157,14 @@ export default function Header() {
               >
                 Volunteer
               </Button>
-              <Button href="/donate" variant="cta" size="sm" onClick={() => setIsOpen(false)}>
+              <Button
+                href={RAZORPAY_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="cta"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+              >
                 Donate Now
               </Button>
             </div>

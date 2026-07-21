@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
+import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 const quickLinks = [
   { href: "/what-we-do", label: "What We Do" },
@@ -43,7 +44,7 @@ export default function NotFound() {
           <Home size={18} strokeWidth={1.5} aria-hidden="true" />
           Return Home
         </Button>
-        <Button href="/donate" variant="cta">
+        <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta">
           Donate Now
         </Button>
       </Reveal>

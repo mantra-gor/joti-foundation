@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
+import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 import HeroBackground from "./HeroBackground";
 
 export default function Hero() {
@@ -30,7 +31,7 @@ export default function Hero() {
 
         <Reveal delay={0.2}>
           <div className="flex flex-wrap items-center gap-4">
-            <Button href="/donate" variant="cta">
+            <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta">
               Support Our Mission{" "}
               <Heart size={18} strokeWidth={1.5} aria-hidden="true" />
             </Button>
