@@ -1,14 +1,21 @@
-import Container from "@/components/ui/Container";
+import WorkWithUsHero from "./_components/WorkWithUsHero";
+import Partnership from "./_components/Partnership";
+import Careers from "./_components/Careers";
+import Volunteering from "./_components/Volunteering";
+
+export const metadata = {
+  title: "Work With Us | Joti Foundation",
+  description:
+    "Partner with Joti Foundation, build a career in disaster resilience, or train as a youth first responder in your own district.",
+};
 
 export default function WorkWithUsPage() {
   return (
-    <Container as="section" className="flex flex-1 flex-col gap-4 py-16 md:py-24">
-      <h1 className="font-display text-headline-lg-mobile text-on-background md:text-headline-lg">
-        Work With Us
-      </h1>
-      <p className="max-w-2xl font-sans text-body-md text-on-surface-variant">
-        This page is under construction.
-      </p>
-    </Container>
+    <>
+      <WorkWithUsHero />
+      <Partnership />
+      <Careers />
+      <Volunteering />
+    </>
   );
 }

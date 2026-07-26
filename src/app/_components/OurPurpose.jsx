@@ -48,18 +48,23 @@ export default function OurPurpose() {
 
         <div className="flex flex-col gap-6 lg:col-span-7">
           <Reveal>
-            <Card tone="white">
-              <motion.div
-                className="mb-6 flex h-12 w-12 items-center justify-center rounded bg-secondary-container/20 text-secondary"
-                whileHover={{ rotate: -8, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              >
-                <Eye size={22} strokeWidth={1.5} aria-hidden="true" />
-              </motion.div>
-              <h3 className="mb-3 font-display text-headline-md text-on-background">
+            <Card tone="forest">
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <motion.div
+                  className="flex h-12 w-12 items-center justify-center rounded bg-on-primary/15 text-on-primary"
+                  whileHover={{ rotate: -8, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                >
+                  <Eye size={22} strokeWidth={1.5} aria-hidden="true" />
+                </motion.div>
+                <span className="font-mono text-label-caps uppercase text-on-primary/70">
+                  By 2036
+                </span>
+              </div>
+              <h3 className="mb-3 font-display text-headline-md text-on-primary">
                 Our Vision
               </h3>
-              <p className="font-sans text-body-md text-on-surface-variant">
+              <p className="mb-6 font-sans text-body-md text-on-primary/85">
                 By 2036, an India where disaster-prone communities are
                 resilient, prepared, and connected, with empowered community
                 youth harnessing modern technology, leading timely life-saving
@@ -67,18 +72,34 @@ export default function OurPurpose() {
                 and building safer, stronger, and more resilient futures for
                 all.
               </p>
+              <div className="flex flex-wrap gap-3">
+                <Chip tone="translucent" shape="pill">
+                  Resilient
+                </Chip>
+                <Chip tone="translucent" shape="pill">
+                  Prepared
+                </Chip>
+                <Chip tone="translucent" shape="pill">
+                  Connected
+                </Chip>
+              </div>
             </Card>
           </Reveal>
 
           <Reveal delay={0.1}>
             <Card tone="terracotta">
-              <motion.div
-                className="mb-6 flex h-12 w-12 items-center justify-center rounded bg-on-secondary/15 text-on-secondary"
-                whileHover={{ rotate: -8, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              >
-                <Target size={22} strokeWidth={1.5} aria-hidden="true" />
-              </motion.div>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <motion.div
+                  className="flex h-12 w-12 items-center justify-center rounded bg-on-secondary/15 text-on-secondary"
+                  whileHover={{ rotate: -8, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                >
+                  <Target size={22} strokeWidth={1.5} aria-hidden="true" />
+                </motion.div>
+                <span className="font-mono text-label-caps uppercase text-on-secondary/70">
+                  First 24 Hours
+                </span>
+              </div>
               <h3 className="mb-3 font-display text-headline-md text-on-secondary">
                 The Mission
               </h3>

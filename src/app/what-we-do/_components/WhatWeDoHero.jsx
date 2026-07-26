@@ -21,14 +21,16 @@ export default function WhatWeDoHero() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="max-w-2xl font-sans text-body-lg text-on-surface-variant">
-              Joti Foundation is a youth-led, women-led disaster resilience non-profit
-              organisation focused on saving lives, strengthening communities and building
-              resilience across the complete Disaster Management Cycle. The cycle includes
-              Prevention and Mitigation, Preparedness, Response and Recovery. Guided by the
-              belief that every minute matters during a disaster, JF works to empower and equip
-              local youth to become first responders capable of delivering timely rescue and
-              relief in the critical 25 hours after a disaster, while bridging the physical
-              connection needed to reach disaster-affected communities.
+              Joti Foundation is a youth-led, women-led disaster resilience
+              non-profit organisation focused on saving lives, strengthening
+              communities and building resilience across the complete Disaster
+              Management Cycle. The cycle includes Prevention and Mitigation,
+              Preparedness, Response and Recovery. Guided by the belief that
+              every minute matters during a disaster, JF works to empower and
+              equip local youth to become first responders capable of delivering
+              timely rescue and relief starting from the critical 24 hours after
+              a disaster, while bridging the physical connection needed to reach
+              disaster-affected communities.
             </p>
           </Reveal>
         </div>

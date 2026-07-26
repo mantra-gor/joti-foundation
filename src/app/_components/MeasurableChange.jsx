@@ -8,8 +8,16 @@ import Reveal from "@/components/motion/Reveal";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 const statRows = [
-  { badge: "24h", label: "Response Time", description: "Average emergency deployment speed" },
-  { badge: "50+", label: "Communities", description: "Disaster-prone zones fully prepared" },
+  {
+    badge: "<24h",
+    label: "Response Time",
+    description: "Average emergency deployment speed",
+  },
+  {
+    badge: "50+",
+    label: "Communities",
+    description: "Disaster-prone zones fully prepared",
+  },
 ];
 
 export default function MeasurableChange() {
@@ -26,8 +34,8 @@ export default function MeasurableChange() {
             Measurable Change
           </h2>
           <p className="max-w-md font-sans text-body-lg text-on-secondary/85">
-            Our impact isn&rsquo;t just in the numbers; it&rsquo;s in the silence after the storm
-            where preparation meets purpose.
+            Our impact isn&rsquo;t just in the numbers; it&rsquo;s in the
+            silence after the storm where preparation meets purpose.
           </p>
 
           <div className="flex flex-col gap-4">
@@ -56,8 +64,16 @@ export default function MeasurableChange() {
 
         <Reveal delay={0.15}>
           <div className="flex flex-col items-center gap-4 rounded border border-on-secondary/20 bg-on-secondary/5 p-10 text-center">
-            <motion.div whileHover={{ scale: 1.15, rotate: -6 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}>
-              <Heart size={40} strokeWidth={1.5} className="text-on-secondary" aria-hidden="true" />
+            <motion.div
+              whileHover={{ scale: 1.15, rotate: -6 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
+              <Heart
+                size={40}
+                strokeWidth={1.5}
+                className="text-on-secondary"
+                aria-hidden="true"
+              />
             </motion.div>
             <span className="font-display text-display-xl-mobile text-on-secondary">
               10,000+
@@ -65,7 +81,13 @@ export default function MeasurableChange() {
             <p className="max-w-xs font-sans text-body-md text-on-secondary/85">
               Responders trained and ready for the next call to action.
             </p>
-            <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta" inverse>
+            <Button
+              href={RAZORPAY_DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="cta"
+              inverse
+            >
               Support Their Training
             </Button>
           </div>

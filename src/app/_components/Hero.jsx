@@ -17,21 +17,26 @@ export default function Hero() {
 
       <Container className="flex flex-col gap-5 py-12 md:py-16">
         <Reveal>
-          <SectionEyebrow inverse>Active Operations 2026</SectionEyebrow>
+          <SectionEyebrow inverse>
+            Active Operations Punjab Flood 2025
+          </SectionEyebrow>
         </Reveal>
 
         <Reveal delay={0.1}>
           <h1 className="max-w-2xl font-display text-headline-lg-mobile text-inverse-on-surface md:text-headline-lg">
             The First 24 Hours:{" "}
-            <span className="text-white accent">
-              Every Second Saves a Life.
-            </span>
+            <span className="text-white accent">Every Second Saves Life.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={0.2}>
           <div className="flex flex-wrap items-center gap-4">
-            <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta">
+            <Button
+              href={RAZORPAY_DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="cta"
+            >
               Support Our Mission{" "}
               <Heart size={18} strokeWidth={1.5} aria-hidden="true" />
             </Button>

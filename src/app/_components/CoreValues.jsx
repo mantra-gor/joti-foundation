@@ -89,13 +89,18 @@ export default function CoreValues() {
                 <h3 className="mb-2 font-display text-lg font-semibold text-on-background">
                   {title}
                 </h3>
-                <p className="font-sans text-body-md text-on-surface-variant">{description}</p>
+                <p className="font-sans text-body-md text-on-surface-variant">
+                  {description}
+                </p>
               </Card>
             </Reveal>
           ))}
 
           <Reveal delay={0.35}>
-            <Card tone="terracotta" className="flex h-full flex-col justify-between">
+            <Card
+              tone="terracotta"
+              className="flex h-full flex-col justify-between"
+            >
               <div>
                 <h3 className="mb-3 font-display text-lg font-semibold text-on-secondary">
                   Be the change India needs.
@@ -111,7 +116,7 @@ export default function CoreValues() {
                 animate="rest"
                 className="mt-6 inline-flex items-center gap-2 border-t border-on-secondary/20 pt-4 font-sans text-button text-on-secondary transition-opacity hover:opacity-80"
               >
-                Join Our Squad{" "}
+                Join Our Team{" "}
                 <motion.span
                   className="inline-flex"
                   variants={{ rest: { x: 0 }, hover: { x: 4 } }}

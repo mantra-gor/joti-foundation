@@ -6,6 +6,7 @@ const TONE_CLASSES = {
   white: "bg-surface-container-lowest border-card-border text-on-surface",
   sand: "bg-surface-container border-card-border text-on-surface",
   terracotta: "bg-secondary border-on-secondary/15 text-on-secondary",
+  forest: "bg-primary border-on-primary/15 text-on-primary",
 };
 
 const PADDING_CLASSES = {

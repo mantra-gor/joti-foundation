@@ -8,7 +8,6 @@ const preparednessStates = [
   "Gujarat — earthquakes and cyclones",
   "Andhra Pradesh — floods and cyclones",
 ];
-const activeDistricts = ["Fazilka", "Muktsar", "Patiala", "Bhatinda", "Sangrur"];
 
 export default function WhereWeWork() {
   return (
@@ -27,7 +26,7 @@ export default function WhereWeWork() {
           </p>
         </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           <Reveal delay={0.05} className="flex flex-col gap-4">
             <span className="font-mono text-label-caps uppercase text-on-surface-variant">
               Focus Regions, 2026–2036
@@ -47,19 +46,6 @@ export default function WhereWeWork() {
               {preparednessStates.map((state) => (
                 <Chip key={state} tone="amber">
                   {state}
-                </Chip>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15} className="flex flex-col gap-4">
-            <span className="font-mono text-label-caps uppercase text-on-surface-variant">
-              Currently Active — Punjab Districts
-            </span>
-            <div className="flex flex-wrap gap-3">
-              {activeDistricts.map((district) => (
-                <Chip key={district} tone="forest">
-                  {district}
                 </Chip>
               ))}
             </div>

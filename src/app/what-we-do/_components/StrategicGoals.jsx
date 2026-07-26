@@ -40,9 +40,9 @@ export default function StrategicGoals() {
     <section className="bg-surface-container-low py-section-mobile lg:py-section-desktop">
       <Container className="flex flex-col gap-12">
         <Reveal className="flex flex-col gap-4">
-          <SectionEyebrow>Strategic Goals</SectionEyebrow>
+          <SectionEyebrow>Where We&rsquo;re Headed by 2036</SectionEyebrow>
           <h2 className="max-w-2xl font-display text-headline-lg-mobile text-on-background md:text-headline-lg">
-            Where We&rsquo;re Headed by 2036
+            Five Strategic Goals
           </h2>
         </Reveal>
 
@@ -54,8 +54,12 @@ export default function StrategicGoals() {
                   {number}
                 </span>
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-display text-headline-md text-on-background">{title}</h3>
-                  <p className="font-sans text-body-md text-on-surface-variant">{description}</p>
+                  <h3 className="font-display text-headline-md text-on-background">
+                    {title}
+                  </h3>
+                  <p className="font-sans text-body-md text-on-surface-variant">
+                    {description}
+                  </p>
                 </div>
               </div>
             </Reveal>

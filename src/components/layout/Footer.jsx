@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, Mail, Share2 } from "lucide-react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import NewsletterForm from "@/components/layout/NewsletterForm";
+import { Facebook, Linkedin, Instagram } from "@/components/icons/BrandIcons";
 
 const organizationLinks = [
   { href: "#", label: "Our Story" },
@@ -14,14 +14,14 @@ const organizationLinks = [
 
 const resourceLinks = [
   { href: "#", label: "Press Kit" },
-  { href: "#", label: "Emergency Guide" },
-  { href: "#", label: "Contact" },
+  // { href: "#", label: "Emergency Guide" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const socialLinks = [
-  { href: "#", label: "Website", Icon: Globe },
-  { href: "#", label: "Email", Icon: Mail },
-  { href: "#", label: "Share", Icon: Share2 },
+  { href: "#", label: "Facebook", Icon: Facebook },
+  { href: "#", label: "LinkedIn", Icon: Linkedin },
+  { href: "#", label: "Instagram", Icon: Instagram },
 ];
 
 const MotionLink = motion.create(Link);
@@ -48,11 +48,12 @@ export default function Footer() {
             Joti Foundation
           </span>
           <p className="font-sans text-body-md text-on-surface-variant">
-            Our 24-hour response mission ensures that when disaster strikes, humanity strikes back
-            faster. We deliver medical aid, search and rescue, and recovery support within the
-            first critical hours.
+            Our within 24-hour response mission ensures that when disaster
+            strikes, humanity strikes back faster. We deliver search & rescue,
+            relief medical aid, and recovery support from the first critical
+            hours.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {socialLinks.map(({ href, label, Icon }) => (
               <MotionLink
                 key={label}

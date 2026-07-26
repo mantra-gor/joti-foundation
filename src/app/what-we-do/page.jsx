@@ -9,8 +9,8 @@ export default function WhatWeDoPage() {
   return (
     <>
       <WhatWeDoHero />
-      <Programmes />
       <InTheField />
+      <Programmes />
       <OurApproach />
       <WhereWeWork />
       <StrategicGoals />

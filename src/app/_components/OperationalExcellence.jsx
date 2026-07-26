@@ -8,8 +8,17 @@ import Reveal from "@/components/motion/Reveal";
 
 const excellence = [
   {
-    tag: "01 — Logistics",
+    tag: "01 — Rescue and Relief",
     tone: "terracotta",
+    title: "First Response, First Priority",
+    description:
+      "Our water-rescue units reach stranded families within hours, pairing swift extraction with the food, water, and shelter relief they need immediately after.",
+    image: "/images/d1.JPG",
+    alt: "A relief worker in an orange vest wades through floodwater carrying a supply sack, with a rescue boat crew close behind",
+  },
+  {
+    tag: "02 — Logistics",
+    tone: "amber",
     title: "Swift Logistic Deployment",
     description:
       "Our water-rescue units are trained to navigate difficult terrains to reach isolated pockets within hours.",
@@ -17,13 +26,22 @@ const excellence = [
     alt: "A line of relief workers wading through floodwater carrying supply sacks",
   },
   {
-    tag: "02 — Recovery",
-    tone: "amber",
+    tag: "03 — Recovery",
+    tone: "forest",
     title: "The Heart of Service",
     description:
       "Beyond food and shelter, we provide the psychological first aid that communities need to begin healing.",
     image: "/images/g37.JPG",
     alt: "Joti Foundation volunteers distributing relief kits to women in the community",
+  },
+  {
+    tag: "04 — Rehabilitation",
+    tone: "terracotta",
+    title: "Rebuilding What Was Lost",
+    description:
+      "We stay long after the water recedes, supporting families as they rebuild homes, livelihoods, and a sense of normalcy.",
+    image: "/images/g28.JPG",
+    alt: "A Joti Foundation volunteer smiles while carrying a relief supply sack beside floodwaters",
   },
 ];
 
