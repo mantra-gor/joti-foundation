@@ -1,26 +1,9 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Card from "@/components/ui/Card";
+import { CONTACT_DETAILS } from "@/lib/constants";
 
-// Placeholder org details — swap for the real email, phone, and address
-// once the foundation confirms them (see CLAUDE.md "Known pages" note on
-// not assuming unconfirmed contact info).
-const DETAILS = [
-  {
-    Icon: Mail,
-    label: "Email",
-    value: "contact@jotifoundation.org",
-    href: "mailto:contact@jotifoundation.org",
-  },
-  {
-    Icon: Phone,
-    label: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
-  },
-  { Icon: MapPin, label: "Office", value: "Gurgaon, Haryana, India" },
-  { Icon: Clock, label: "Hours", value: "Mon – Fri, 9:00 AM – 6:00 PM IST" },
-];
+const ICONS = { mail: Mail, phone: Phone, mapPin: MapPin };
 
 export default function ContactDetails() {
   return (
@@ -36,30 +19,42 @@ export default function ContactDetails() {
       </div>
 
       <ul className="flex flex-col gap-6">
-        {DETAILS.map(({ Icon, label, value, href }) => (
-          <li key={label} className="flex items-start gap-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-outline-variant text-primary">
-              <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <span className="flex flex-col gap-1">
-              <span className="font-mono text-label-caps uppercase text-on-surface-variant">
-                {label}
+        {CONTACT_DETAILS.map(({ icon, label, value, href }) => {
+          const Icon = ICONS[icon];
+          return (
+            <li key={label} className="flex items-start gap-4">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-outline-variant text-primary">
+                <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
               </span>
-              {href ? (
-                <Link
-                  href={href}
-                  className="font-sans text-body-md text-on-background transition-colors hover:text-primary"
-                >
-                  {value}
-                </Link>
-              ) : (
-                <span className="font-sans text-body-md text-on-background">
-                  {value}
+              <span className="flex flex-col gap-1">
+                <span className="font-mono text-label-caps uppercase text-on-surface-variant">
+                  {label}
                 </span>
-              )}
-            </span>
-          </li>
-        ))}
+                {href ? (
+                  <Link
+                    href={href}
+                    className="font-sans text-body-md text-on-background transition-colors hover:text-primary"
+                  >
+                    {value}
+                  </Link>
+                ) : Array.isArray(value) ? (
+                  value.map((line) => (
+                    <span
+                      key={line}
+                      className="font-sans text-body-md text-on-background"
+                    >
+                      {line}
+                    </span>
+                  ))
+                ) : (
+                  <span className="font-sans text-body-md text-on-background">
+                    {value}
+                  </span>
+                )}
+              </span>
+            </li>
+          );
+        })}
       </ul>
 
       <div className="flex flex-col gap-2 border-t border-outline-variant pt-6">

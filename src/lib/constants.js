@@ -16,4 +16,28 @@ export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/JotiFoundation/",
   instagram: "https://www.instagram.com/jotifoundation/",
   linkedin: "https://www.linkedin.com/company/joti-foundation/",
+  youtube: "https://www.youtube.com/@jotifoundation",
 };
+
+export const CONTACT_DETAILS = [
+  {
+    icon: "mail",
+    label: "Email",
+    value: "info@jotifoundation.org",
+    href: "mailto:info@jotifoundation.org",
+  },
+  {
+    icon: "phone",
+    label: "Phone",
+    value: "+91-9315064855",
+    href: "tel:+919315064855",
+  },
+  {
+    icon: "mapPin",
+    label: "Location",
+    value: [
+      "Gurgaon, Haryana, India - 122102",
+      "Muktsar, Punjab, India - 152032",
+    ],
+  },
+];

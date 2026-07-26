@@ -5,7 +5,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import NewsletterForm from "@/components/layout/NewsletterForm";
-import { Facebook, Linkedin, Instagram } from "@/components/icons/BrandIcons";
+import {
+  Facebook,
+  Linkedin,
+  Instagram,
+  Youtube,
+} from "@/components/icons/BrandIcons";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 const organizationLinks = [
@@ -25,6 +30,7 @@ const socialLinks = [
   { href: SOCIAL_LINKS.facebook, label: "Facebook", Icon: Facebook },
   { href: SOCIAL_LINKS.linkedin, label: "LinkedIn", Icon: Linkedin },
   { href: SOCIAL_LINKS.instagram, label: "Instagram", Icon: Instagram },
+  { href: SOCIAL_LINKS.youtube, label: "YouTube", Icon: Youtube },
 ];
 
 const MotionLink = motion.create(Link);
