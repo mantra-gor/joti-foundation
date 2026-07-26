@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
@@ -26,13 +27,20 @@ export default function Header() {
       <Container className="flex items-center justify-between py-5">
         <MotionLink
           href="/"
-          className="font-display text-lg font-semibold tracking-tight text-on-background sm:text-xl"
+          className="shrink-0"
           onClick={() => setIsOpen(false)}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >
-          Joti Foundation
+          <Image
+            src="/images/logo/jf-logo.png"
+            alt="Joti Foundation"
+            width={300}
+            height={144}
+            preload
+            className="h-10 w-auto sm:h-12"
+          />
         </MotionLink>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -47,14 +55,19 @@ export default function Header() {
                 whileHover="hover"
                 animate="rest"
                 className={`relative font-mono text-label-caps uppercase transition-colors ${
-                  isActive ? "text-primary" : "text-on-surface-variant hover:text-primary"
+                  isActive
+                    ? "text-primary"
+                    : "text-on-surface-variant hover:text-primary"
                 }`}
               >
                 {label}
                 <motion.span
                   aria-hidden="true"
                   className="absolute -bottom-1 left-0 h-px w-full bg-primary"
-                  variants={{ rest: { scaleX: isActive ? 1 : 0 }, hover: { scaleX: 1 } }}
+                  variants={{
+                    rest: { scaleX: isActive ? 1 : 0 },
+                    hover: { scaleX: 1 },
+                  }}
                   style={{ originX: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 />
@@ -64,10 +77,16 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button href="/work-with-us" variant="ghost" size="sm">
+          <Button href="/volunteer" variant="ghost" size="sm">
             Volunteer
           </Button>
-          <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta" size="sm">
+          <Button
+            href={RAZORPAY_DONATE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="cta"
+            size="sm"
+          >
             Donate Now
           </Button>
         </div>
@@ -97,7 +116,11 @@ export default function Header() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="square" strokeLinejoin="miter" />
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                />
               </motion.svg>
             ) : (
               <motion.svg
@@ -114,7 +137,11 @@ export default function Header() {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="square" strokeLinejoin="miter" />
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                />
               </motion.svg>
             )}
           </AnimatePresence>

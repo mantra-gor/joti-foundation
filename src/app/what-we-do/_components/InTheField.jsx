@@ -8,19 +8,19 @@ import Reveal from "@/components/motion/Reveal";
 
 const photos = [
   {
-    src: "/images/d1.JPG",
-    alt: "A volunteer wading through floodwater with a relief supply sack beside a rescue boat",
-    caption: "Carrying relief supplies to families cut off by floodwater in Punjab.",
+    src: "/images/g10.JPG",
+    alt: "Villagers carrying boxes and bundles on their heads as they walk out through a flooded brick-walled lane",
+    caption: "Families moving belongings to higher ground as water enters the village.",
   },
   {
-    src: "/images/g11.JPG",
-    alt: "Volunteers passing relief supplies down to a rescue boat on a flooded riverbank",
-    caption: "Loading relief supplies onto a rescue boat bound for flood-hit villages.",
+    src: "/images/g12.JPG",
+    alt: "Joti Foundation responders in hi-vis vests talking with residents around a clipboard during a needs assessment",
+    caption: "Assessing need house by house so relief reaches the families worst hit.",
   },
   {
-    src: "/images/g25.JPG",
-    alt: "A line of relief workers wading through floodwater carrying supply sacks",
-    caption: "Youth responders wading through floodwater to reach isolated communities.",
+    src: "/images/g5.JPG",
+    alt: "Responders in life jackets loading supplies into an inflatable rescue boat at a flooded riverbank",
+    caption: "Loading a rescue boat bound for villages cut off by the water.",
   },
 ];
 

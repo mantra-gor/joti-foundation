@@ -47,8 +47,8 @@ export default function WhatWeDoHero() {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <Image
-                src="/images/g28.JPG"
-                alt="A Joti Foundation volunteer carrying a relief supply sack through floodwater during the Punjab flood response"
+                src="/images/g25.JPG"
+                alt="A line of Joti Foundation responders in hi-vis vests wading through floodwater with relief sacks carried on their heads"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0"

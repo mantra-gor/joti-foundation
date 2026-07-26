@@ -1,3 +1,4 @@
+import ActiveOperationBar from "./_components/ActiveOperationBar";
 import Hero from "./_components/Hero";
 import StatsStrip from "./_components/StatsStrip";
 import OurPurpose from "./_components/OurPurpose";
@@ -9,6 +10,7 @@ import ClosingCta from "./_components/ClosingCta";
 export default function Home() {
   return (
     <>
+      <ActiveOperationBar />
       <Hero />
       <StatsStrip />
       <OurPurpose />

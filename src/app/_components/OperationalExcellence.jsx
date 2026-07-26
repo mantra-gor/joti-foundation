@@ -31,8 +31,8 @@ const excellence = [
     title: "The Heart of Service",
     description:
       "Beyond food and shelter, we provide the psychological first aid that communities need to begin healing.",
-    image: "/images/g37.JPG",
-    alt: "Joti Foundation volunteers distributing relief kits to women in the community",
+    image: "/images/g11.JPG",
+    alt: "Volunteers forming a chain to pass relief sacks up a sandbagged embankment from a rescue boat",
   },
   {
     tag: "04 — Rehabilitation",

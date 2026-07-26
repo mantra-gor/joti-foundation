@@ -39,6 +39,15 @@ Built and in use — reuse these rather than rebuilding inline styles:
 
 Header and Footer are global, wired into `src/app/layout.jsx` — don't duplicate them per page. Footer's Organization/Resources link columns and the Privacy Policy link are still `href="#"` placeholders (see "Known pages").
 
+## Statistics
+
+`src/lib/stats.js` is the **single source of truth for every number on the site** — headline impact figures, the Punjab Floods 2025 response, Build Back Better recovery, and the Cold Wave 2026 anticipatory action. It's transcribed from `data.md` (the org's own reporting) at the repo root.
+
+- Never hardcode a stat in a component. Import from `@/lib/stats` so a correction in one place fixes every page.
+- These are factual claims by an NGO. Transcribe exactly — don't round, paraphrase, or invent a figure to balance a grid. If a layout wants six stats and the data has five, change the layout.
+- The earlier placeholder figures (`12,400+` youth trained, `850k` lives impacted, `42` districts, `10,000+` responders) were invented filler and have been removed. Don't reintroduce that pattern.
+- The 1,000 YRU / 400 CQRT / 2,000 VDMC / 50 district numbers on `/work-with-us` and `/what-we-do` are **2036 targets**, not achievements — keep them labelled that way.
+
 ## Forms & integrations
 
 This repo is frontend-only by design:
@@ -67,13 +76,17 @@ Not yet decided whether this ships as a standard Next.js server deploy or a full
 - `/what-we-do` — stub, not yet built.
 - `/our-team` — stub, not yet built.
 - `/work-with-us` — Built: hero (with an anchor-link index into the three sections) plus Partnership, Careers, and Volunteering. Written without a Figma screenshot — all copy is derived from facts already in the repo (strategic goals, programmes, team structure, focus regions), so re-check it against the real Figma frame when one exists. Partnership and Careers CTAs point at `/contact`; the Volunteering CTA hands off to `/volunteer`.
+- `/our-story` — Built: hero (the "we can't help everyone, but everyone can help someone" motto), Our Inspiration (the late Prabjot Singh of Sri Muktsar Sahib — he is Prabkiran Brar's father, which is why `/our-team` also references Sherewala), and Ignite the Future. Copy is a rewrite of text supplied from the org's old website; no Figma frame exists for it. The whole page is deliberately text-only — no hero photo, and no portrait of Prabjot Singh, at the owner's request.
 - `/volunteer` — stub route holding the place for the volunteer application form (linked from `/work-with-us#volunteering`). Form deliberately not built: no design or field list specified yet. When it is, it posts via `postJson()` to the external PHP API, not a Route Handler.
 - `/donate` — stub route exists (linked from every `Donate Now` / "Support Our Mission" / "Support Their Training" CTA); not yet designed/built. Created as a dedicated route rather than an external link or modal — reasonable default, revisit if that's wrong.
-- The footer's Our Story, Financials, Careers, Press Kit, Emergency Guide, Contact, and Privacy Policy links are still `href="#"` placeholders — none of these are confirmed as real routes yet. Confirm before building rather than assuming a typical NGO sitemap.
+- `/reports` — Built: hero + a card grid driven by `src/lib/reports.js` (`REPORTS` array — currently empty, so the page renders a "Coming soon" state). These are work/activity reports — what Joti Foundation did, how, and where — **not** financial statements. Built as a list page rather than a single link because more reports will be published over time. To publish a report: drop the PDF under `public/documents/reports/` and add `{ title, year, description, href }` to `REPORTS` — the page picks it up automatically, no component changes needed.
+- The footer has no Press Kit — that link was removed (never a real deliverable). Legal links (Privacy Policy, Terms of Service, Refund Policy) are now real routes. An "Emergency Guide" link is not built and not confirmed as a real deliverable — don't add it without confirming first, and don't assume a typical NGO sitemap for anything else. (Our Story, Careers, Contact, and Reports point at real routes.)
 
 ## Images
 
 Static assets go in `public/`; render them with `next/image`. The current `public/*.svg` files are unused create-next-app placeholders — remove them once real imagery lands.
+
+**Every image currently in the repo is a stand-in** — the `public/images/*.JPG` photography and the logo files alike. Real imagery gets swapped in at go-live. So don't treat the present files as final: keep `alt` text describing what the photo *should* show for that slot, and don't build layouts that depend on a specific file's aspect ratio or crop.
 
 ## Accessibility
 

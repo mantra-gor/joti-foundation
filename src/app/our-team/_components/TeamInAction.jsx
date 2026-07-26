@@ -21,8 +21,8 @@ export default function TeamInAction() {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <Image
-                src="/images/g37.JPG"
-                alt="Joti Foundation staff and volunteers distributing relief kits to women in the community"
+                src="/images/c10.JPG"
+                alt="Joti Foundation volunteers in hi-vis vests standing behind rows of schoolchildren seated on grass holding relief kits at a distribution camp"
                 fill
                 sizes="100vw"
                 className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0"

@@ -41,8 +41,8 @@ export default function OurTeamHero() {
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
                 <Image
-                  src="/images/g5.JPG"
-                  alt="Joti Foundation's frontline response team gathered around a rescue boat during a flood operation"
+                  src="/images/g28.JPG"
+                  alt="A Joti Foundation volunteer in a hi-vis vest smiling as she carries a relief supply sack along the water's edge"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0"

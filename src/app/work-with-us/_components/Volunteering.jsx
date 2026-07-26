@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Chip from "@/components/ui/Chip";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
 
@@ -37,30 +36,37 @@ const regions = [
   "Punjab",
 ];
 
+// Proof that the model works, drawn from the Punjab Floods 2025 response.
+const proofPoints = [
+  { value: "100+", label: "Active Volunteers" },
+  { value: "50+", label: "Deployed, Punjab Floods 2025" },
+  { value: "25+", label: "Days Continuous Rescue" },
+];
+
 export default function Volunteering() {
   return (
     <section
       id="volunteering"
       aria-labelledby="volunteering-heading"
-      className="scroll-mt-24 bg-primary py-section-mobile lg:py-section-desktop"
+      className="scroll-mt-24 bg-surface-container-low py-section-mobile lg:py-section-desktop"
     >
       <Container className="grid gap-12 lg:grid-cols-12 lg:items-center">
         <div className="order-1 flex flex-col gap-6 lg:col-span-7 lg:order-2">
           <Reveal>
-            <SectionEyebrow inverse>Volunteering</SectionEyebrow>
+            <SectionEyebrow>Volunteering</SectionEyebrow>
           </Reveal>
 
           <Reveal delay={0.1}>
             <h2
               id="volunteering-heading"
-              className="max-w-2xl font-display text-headline-lg-mobile text-on-primary md:text-headline-lg"
+              className="max-w-2xl font-display text-headline-lg-mobile text-on-background md:text-headline-lg"
             >
               The First Responder Is Already There. It Could Be You.
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="max-w-2xl font-sans text-body-lg text-on-primary/85">
+            <p className="max-w-2xl font-sans text-body-lg text-on-surface-variant">
               Local youth are usually the first people present when a disaster
               strikes, and are uniquely positioned to act immediately —
               particularly in remote locations where external responders take
@@ -73,18 +79,18 @@ export default function Volunteering() {
             {steps.map(({ number, title, description }) => (
               <motion.div
                 key={number}
-                className="flex flex-col gap-2 rounded border border-on-primary/20 bg-on-primary/5 p-5 sm:flex-row sm:gap-5"
-                whileHover={{ x: 6, backgroundColor: "rgba(255,255,255,0.1)" }}
+                className="flex flex-col gap-2 rounded border border-card-border bg-surface-container-lowest p-5 hover:shadow-hover sm:flex-row sm:gap-5"
+                whileHover={{ x: 6 }}
                 transition={{ type: "spring", stiffness: 350, damping: 28 }}
               >
-                <span className="font-mono text-label-caps uppercase text-secondary-container sm:w-8 sm:shrink-0 sm:pt-1">
+                <span className="font-mono text-label-caps uppercase text-secondary sm:w-8 sm:shrink-0 sm:pt-1">
                   {number}
                 </span>
                 <div className="flex flex-col gap-1">
-                  <h3 className="font-display text-lg font-semibold text-on-primary">
+                  <h3 className="font-display text-lg font-semibold text-on-background">
                     {title}
                   </h3>
-                  <p className="font-sans text-body-md text-on-primary/80">
+                  <p className="font-sans text-body-md text-on-surface-variant">
                     {description}
                   </p>
                 </div>
@@ -94,15 +100,15 @@ export default function Volunteering() {
 
           <Reveal delay={0.3} className="flex flex-col gap-4">
             <div className="flex flex-wrap items-center gap-4">
-              <Button href="/volunteer" variant="primary" inverse>
+              <Button href="/volunteer" variant="primary">
                 Apply to Volunteer{" "}
                 <ArrowRight size={18} strokeWidth={1.5} aria-hidden="true" />
               </Button>
-              <Button href="/what-we-do" variant="ghost" inverse>
+              <Button href="/what-we-do" variant="ghost">
                 See the Work First
               </Button>
             </div>
-            <p className="font-sans text-body-md text-on-primary/70">
+            <p className="font-sans text-body-md text-on-surface-variant">
               The application form lives on a separate page — it takes you
               through where you are based and how you want to contribute.
             </p>
@@ -122,8 +128,8 @@ export default function Volunteering() {
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
                 <Image
-                  src="/images/g37.JPG"
-                  alt="A woman volunteer in a Joti Foundation hi-vis vest handing out bundles of clothing to women gathered at a community distribution table"
+                  src="/images/g11.JPG"
+                  alt="Volunteers and residents working shoulder to shoulder to pass relief sacks up a sandbagged embankment from a rescue boat"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0"
@@ -131,18 +137,21 @@ export default function Volunteering() {
               </motion.div>
             </motion.div>
 
-            <div className="flex flex-col gap-3">
-              <span className="font-mono text-label-caps uppercase text-on-primary/70">
-                Focus Regions, 2026&ndash;2036
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {regions.map((region) => (
-                  <Chip key={region} tone="translucent">
-                    {region}
-                  </Chip>
-                ))}
-              </div>
-            </div>
+            <dl className="grid grid-cols-3 gap-4">
+              {proofPoints.map(({ value, label }) => (
+                <div
+                  key={label}
+                  className="flex flex-col-reverse gap-1 rounded border border-card-border bg-surface-container-lowest p-4"
+                >
+                  <dt className="font-sans text-body-md text-on-surface-variant">
+                    {label}
+                  </dt>
+                  <dd className="font-display text-headline-md text-secondary">
+                    {value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </Reveal>
       </Container>

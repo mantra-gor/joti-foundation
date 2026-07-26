@@ -1,27 +1,30 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import NewsletterForm from "@/components/layout/NewsletterForm";
 import { Facebook, Linkedin, Instagram } from "@/components/icons/BrandIcons";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const organizationLinks = [
-  { href: "#", label: "Our Story" },
-  { href: "#", label: "Financials" },
-  { href: "#", label: "Careers" },
-];
-
-const resourceLinks = [
-  { href: "#", label: "Press Kit" },
-  // { href: "#", label: "Emergency Guide" },
+  { href: "/our-story", label: "Our Story" },
+  { href: "/reports", label: "Reports" },
+  { href: "/work-with-us#careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
 
+const legalLinks = [
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-of-service", label: "Terms of Service" },
+  { href: "/refund-policy", label: "Refund Policy" },
+];
+
 const socialLinks = [
-  { href: "#", label: "Facebook", Icon: Facebook },
-  { href: "#", label: "LinkedIn", Icon: Linkedin },
-  { href: "#", label: "Instagram", Icon: Instagram },
+  { href: SOCIAL_LINKS.facebook, label: "Facebook", Icon: Facebook },
+  { href: SOCIAL_LINKS.linkedin, label: "LinkedIn", Icon: Linkedin },
+  { href: SOCIAL_LINKS.instagram, label: "Instagram", Icon: Instagram },
 ];
 
 const MotionLink = motion.create(Link);
@@ -42,11 +45,15 @@ function FooterLink({ href, children }) {
 export default function Footer() {
   return (
     <footer className="border-t border-outline-variant bg-surface-container">
-      <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div className="flex flex-col gap-4 lg:col-span-1">
-          <span className="font-display text-lg font-semibold tracking-tight text-on-background">
-            Joti Foundation
-          </span>
+      <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-4">
+          <Image
+            src="/images/logo/jf-logo.png"
+            alt="Joti Foundation"
+            width={300}
+            height={144}
+            className="w-34 h-auto"
+          />
           <p className="font-sans text-body-md text-on-surface-variant">
             Our within 24-hour response mission ensures that when disaster
             strikes, humanity strikes back faster. We deliver search & rescue,
@@ -85,19 +92,6 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4">
           <span className="font-mono text-label-caps uppercase text-on-surface-variant">
-            Resources
-          </span>
-          <ul className="flex flex-col gap-3">
-            {resourceLinks.map(({ href, label }) => (
-              <li key={label}>
-                <FooterLink href={href}>{label}</FooterLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <span className="font-mono text-label-caps uppercase text-on-surface-variant">
             Newsletter
           </span>
           <NewsletterForm />
@@ -109,12 +103,17 @@ export default function Footer() {
           <span className="font-sans text-sm text-on-surface-variant">
             © {new Date().getFullYear()} Joti Foundation.
           </span>
-          <Link
-            href="#"
-            className="font-sans text-sm text-on-surface-variant transition-colors hover:text-primary"
-          >
-            Privacy Policy
-          </Link>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {legalLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="font-sans text-sm text-on-surface-variant transition-colors hover:text-primary"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
         </Container>
       </div>
     </footer>

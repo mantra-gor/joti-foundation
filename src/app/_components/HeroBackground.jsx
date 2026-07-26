@@ -7,16 +7,24 @@ const ROTATION_INTERVAL_MS = 4000;
 
 const images = [
   {
-    src: "/images/d1.JPG",
-    alt: "Volunteers in orange safety vests carrying relief supplies through a flooded village",
+    src: "/images/assam-flood-2026/IMG_7269.JPG.jpeg",
+    alt: "Three women wade chest-deep through muddy floodwater past a submerged village shopfront, carrying belongings above the waterline",
   },
   {
-    src: "/images/g5.JPG",
-    alt: "Relief workers loading supplies onto a rescue boat at the water's edge",
+    src: "/images/assam-flood-2026/IMG_7277.JPG.jpeg",
+    alt: "Residents wait on the tin roof of a flooded market row as brown water surges through the street below",
   },
   {
-    src: "/images/g11.JPG",
-    alt: "Volunteers passing relief supplies down to a rescue boat on a flooded riverbank",
+    src: "/images/assam-flood-2026/IMG_7275.JPG.jpeg",
+    alt: "Floodwater standing at door height inside a village home, its veranda furniture half submerged",
+  },
+  {
+    src: "/images/assam-flood-2026/IMG_7276.JPG.jpeg",
+    alt: "A cluster of tin-roofed village houses cut off by floodwater that has risen to their windows",
+  },
+  {
+    src: "/images/assam-flood-2026/IMG_7274.JPG.jpeg",
+    alt: "A submerged homestead seen across a wide expanse of floodwater under clear sky",
   },
 ];
 

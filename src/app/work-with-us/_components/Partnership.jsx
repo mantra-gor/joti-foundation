@@ -112,7 +112,11 @@ export default function Partnership() {
               your message &ldquo;Partnership&rdquo; so it reaches the right
               desk.
             </p>
-            <Button href="/contact" variant="primary" className="w-fit shrink-0">
+            <Button
+              href="/contact"
+              variant="primary"
+              className="w-fit shrink-0"
+            >
               Start a Partnership Conversation
             </Button>
           </div>

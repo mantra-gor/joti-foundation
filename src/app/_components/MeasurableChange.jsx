@@ -1,24 +1,12 @@
 "use client";
 
-import { Heart } from "lucide-react";
+import { Heart, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
-
-const statRows = [
-  {
-    badge: "<24h",
-    label: "Response Time",
-    description: "Average emergency deployment speed",
-  },
-  {
-    badge: "50+",
-    label: "Communities",
-    description: "Disaster-prone zones fully prepared",
-  },
-];
+import { IMPACT_STATS } from "@/lib/stats";
 
 export default function MeasurableChange() {
   return (
@@ -38,59 +26,55 @@ export default function MeasurableChange() {
             silence after the storm where preparation meets purpose.
           </p>
 
-          <div className="flex flex-col gap-4">
-            {statRows.map(({ badge, label, description }) => (
-              <motion.div
-                key={label}
-                className="flex items-center gap-4 rounded border border-on-secondary/20 bg-on-secondary/5 p-5"
-                whileHover={{ x: 6, backgroundColor: "rgba(255,255,255,0.1)" }}
-                transition={{ type: "spring", stiffness: 350, damping: 28 }}
-              >
-                <span className="flex h-12 w-16 shrink-0 items-center justify-center rounded bg-on-secondary/10 font-display text-lg font-semibold text-on-secondary">
-                  {badge}
-                </span>
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-label-caps uppercase text-on-secondary/70">
-                    {label}
-                  </span>
-                  <span className="font-sans text-body-md font-semibold text-on-secondary">
-                    {description}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            className="flex items-center gap-4 rounded border border-on-secondary/20 bg-on-secondary/5 p-5"
+            whileHover={{ x: 6, backgroundColor: "rgba(255,255,255,0.1)" }}
+            transition={{ type: "spring", stiffness: 350, damping: 28 }}
+          >
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded bg-on-secondary/10 text-on-secondary">
+              <Timer size={22} strokeWidth={1.5} aria-hidden="true" />
+            </span>
+            <div className="flex flex-col gap-1">
+              <span className="font-mono text-label-caps uppercase text-on-secondary/70">
+                Response Time
+              </span>
+              <span className="font-sans text-body-md font-semibold text-on-secondary">
+                Rescue and relief inside the first 24 hours
+              </span>
+            </div>
+          </motion.div>
+
+          <Button
+            href={RAZORPAY_DONATE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="cta"
+            inverse
+            className="w-fit"
+          >
+            Support Their Training{" "}
+            <Heart size={18} strokeWidth={1.5} aria-hidden="true" />
+          </Button>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="flex flex-col items-center gap-4 rounded border border-on-secondary/20 bg-on-secondary/5 p-10 text-center">
-            <motion.div
-              whileHover={{ scale: 1.15, rotate: -6 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
-              <Heart
-                size={40}
-                strokeWidth={1.5}
-                className="text-on-secondary"
-                aria-hidden="true"
-              />
-            </motion.div>
-            <span className="font-display text-display-xl-mobile text-on-secondary">
-              10,000+
-            </span>
-            <p className="max-w-xs font-sans text-body-md text-on-secondary/85">
-              Responders trained and ready for the next call to action.
-            </p>
-            <Button
-              href={RAZORPAY_DONATE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="cta"
-              inverse
-            >
-              Support Their Training
-            </Button>
-          </div>
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded border border-on-secondary/20 bg-on-secondary/20">
+            {IMPACT_STATS.map(({ value, label }) => (
+              <motion.div
+                key={label}
+                className="flex flex-col-reverse gap-2 bg-secondary p-6"
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <dt className="font-sans text-body-md text-on-secondary/70">
+                  {label}
+                </dt>
+                <dd className="font-display text-headline-md text-on-secondary">
+                  {value}
+                </dd>
+              </motion.div>
+            ))}
+          </dl>
         </Reveal>
       </Container>
     </section>
