@@ -25,7 +25,7 @@ const tiers = [
         name: "Ajit Brar",
         title: "Trustee",
         bio: "Managing Trustee. A successful lawyer by profession, a Welham Boy's Alumni who is a philanthropist, young adventurer, and compassionate rescue and relief expert.",
-        photo: "/images/team/ajit-brar.webp",
+        photo: "/images/team/ajit-brar.jpeg",
         linkedin: "#",
       },
       {
@@ -57,12 +57,14 @@ const tiers = [
         name: "Divya Gupta",
         title: "CEO",
         bio: "Humanitarian and Development Leader with over 22 years of experience across Disaster Risk Reduction (DRR), climate resilience, Water, Sanitation and Hygiene Promotion (WASH), and public health promotion in India and Nepal.",
+        photo: "/images/team/divya-gupta.png",
         linkedin: "#",
       },
       {
         name: "Ramjul Ali Barbhuiya",
         title: "Program Manager",
         bio: "Humanitarian and Development professional with over seven years of experience across DRR, WASH and Climate Resilience. Certified expert in Disaster Risk Management from International Association of Disaster Management.",
+        photo: "/images/team/ramjul-ali.jpeg",
         linkedin: "#",
       },
       {
