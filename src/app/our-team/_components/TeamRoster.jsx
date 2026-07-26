@@ -64,7 +64,7 @@ const tiers = [
         name: "Ramjul Ali Barbhuiya",
         title: "Program Manager",
         bio: "Humanitarian and Development professional with over seven years of experience across DRR, WASH and Climate Resilience. Certified expert in Disaster Risk Management from International Association of Disaster Management.",
-        photo: "/images/team/ramjul-ali.jpeg",
+        photo: "/images/team/ali-ramjul.jpeg",
         linkedin: "#",
       },
       {
