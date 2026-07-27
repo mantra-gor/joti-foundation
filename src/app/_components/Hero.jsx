@@ -25,7 +25,7 @@ export default function Hero() {
         <Reveal onMount delay={0.1}>
           <h1 className="max-w-2xl font-display text-headline-lg-mobile text-inverse-on-surface md:text-headline-lg">
             The First 24 Hours:{" "}
-            <span className="text-white accent">Every Second Saves Life.</span>
+            <span className="text-white accent">Every Second Saves Lives.</span>
           </h1>
         </Reveal>
 

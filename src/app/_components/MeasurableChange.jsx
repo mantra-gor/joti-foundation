@@ -39,7 +39,7 @@ export default function MeasurableChange() {
                 Response Time
               </span>
               <span className="font-sans text-body-md font-semibold text-on-secondary">
-                Rescue and relief inside the first 24 hours
+                Rescue and relief starting from the first 24 hours
               </span>
             </div>
           </motion.div>

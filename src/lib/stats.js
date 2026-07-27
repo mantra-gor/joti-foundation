@@ -14,30 +14,41 @@
  */
 const STAT = {
   responseTime: { value: "Under 24h", label: "Response Time" },
-  floodBeneficiaries: { value: "25,000+", label: "Flood Beneficiaries" },
+  floodBeneficiaries: { value: "25,000+", label: "People Reached" },
   spectacles: { value: "10,000+", label: "Spectacles Provided" },
   safeWaterUsers: { value: "30,000", label: "Daily Safe Water Users" },
-  childrenScreened: { value: "250,000+", label: "Children Screened" },
-  activeVolunteers: { value: "100+", label: "Active Volunteers" },
-  borderVillages: { value: "20+", label: "Border Villages Served" },
+  childrenScreened: {
+    value: "250,000+",
+    label: "Children Screened - Eyes Health",
+  },
+  activeVolunteers: { value: "100+", label: "Joti Volunteers" },
+  borderVillages: { value: "20+", label: "Border Villages Served In Punjab" },
+  continuousRescue: { value: "25+", label: "Days Continuous Rescue" },
+  assamVillages: {
+    value: "10",
+    label: "Villages in Sivasagar District, Assam",
+  },
 };
 
 /** Home hero strip — the four figures that carry the most weight above the fold. */
 export const HEADLINE_STATS = [
   STAT.responseTime,
   STAT.floodBeneficiaries,
-  STAT.childrenScreened,
+  // STAT.childrenScreened,
+  STAT.safeWaterUsers,
   STAT.activeVolunteers,
 ];
 
 /** Full cross-programme impact set, "Volunteers, Impact & Stories from the Field". */
 export const IMPACT_STATS = [
-  STAT.floodBeneficiaries,
+  // STAT.floodBeneficiaries,
   STAT.childrenScreened,
   STAT.spectacles,
-  STAT.safeWaterUsers,
+  // STAT.safeWaterUsers,
   STAT.activeVolunteers,
   STAT.borderVillages,
+  STAT.continuousRescue,
+  STAT.assamVillages,
 ];
 
 /** Punjab Floods 2025 — the scale of the crisis JF responded to. */
