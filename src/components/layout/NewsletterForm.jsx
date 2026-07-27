@@ -15,7 +15,7 @@ export default function NewsletterForm() {
 
     setStatus("loading");
     try {
-      await postJson("/newsletter", { email });
+      await postJson("/api/newsletter", { email });
       setStatus("success");
       setEmail("");
     } catch {

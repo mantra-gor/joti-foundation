@@ -43,11 +43,17 @@ const tiers = [
       {
         name: "Ghanshyam Jethwa",
         title: "Strategic Advisor - Partnerships & Growth",
-        bio: "Strategic Advisor - Partnerships & Growth. An international strategic leader with over 30 years of experience of managing complex emergencies and development programmes in four countries and 28 states of India.",
+        bio: "An international strategic leader with over 30 years of experience of managing complex emergencies and development programmes in four countries and 28 states of India.",
         photo: "/images/team/ghanshyam-jethwa.jpg",
         linkedin: "#",
       },
-      // Second advisor pending — name and title not yet confirmed by the org.
+      {
+        name: "Dr Gopal Krishan",
+        title: "Technical Advisor",
+        bio: "A scientist with over 25 years of experience. Currently at the National Institute of Hydrology, Roorkee, and an Ex-Researcher at the Indo-Gangetic Basin, Groundwater Resilience Project, British Geological Survey, United Kingdom.",
+        photo: "/images/team/gopal_krishan.jpeg",
+        linkedin: "#",
+      },
     ],
   },
   {
@@ -71,18 +77,21 @@ const tiers = [
         name: "Ajeet Gupta",
         title: "HR and Finance Manager",
         bio: "Jawaharlal Nehru University Alumni with 3 years of work experience.",
+        photo: "/images/team/ajeet_gupta.jpeg",
         linkedin: "#",
       },
       {
         name: "Sumit Singh",
         title: "Communication Manager",
         bio: "Communication Specialist with 5 years of progressive experience in public relations, media relations content strategy, stakeholder communications, and brand management.",
+        photo: "/images/team/sumit_singh.jpeg",
         linkedin: "#",
       },
       {
         name: "Arshdeep Singh Brar",
         title: "Manager, Rescue Operations",
         bio: "Three years of work experience in rescue operation management and field coordination, logistics management and team coordination.",
+        photo: "/images/team/arshdeep_singh_brar.jpeg",
         linkedin: "#",
       },
       {
@@ -95,6 +104,7 @@ const tiers = [
         name: "Lovepreet Singh",
         title: "Program Associate",
         bio: "Over two years of experience in field coordination, stakeholder management and program coordination.",
+        photo: "/images/team/lovepreet_singh.jpeg",
         linkedin: "#",
       },
       {
@@ -107,24 +117,28 @@ const tiers = [
         name: "Arsh Shaini",
         title: "Field Documentation Associate",
         bio: "Over two years of experience in field level documentation and working with multi-sectoral engagement.",
+        photo: "/images/team/arsh_shaini.jpeg",
         linkedin: "#",
       },
       {
         name: "Sukhwinder Singh",
         title: "Field Associate",
         bio: "Over two years of experience in field management, ground set-up and local team support.",
+        photo: "/images/team/sukhwinder_singh.jpeg",
         linkedin: "#",
       },
       {
         name: "Surinder Singh",
         title: "Field Associate",
         bio: "Over two years of experience in field level coordination and programme management.",
+        photo: "/images/team/surinder_singh.jpeg",
         linkedin: "#",
       },
       {
         name: "Harmesh Singh",
         title: "Field Associate",
         bio: "Over two years of experience in programme management, village mapping and programme implementation at ground level.",
+        photo: "/images/team/harmesh_singh.jpeg",
         linkedin: "#",
       },
     ],

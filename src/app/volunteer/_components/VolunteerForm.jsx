@@ -21,7 +21,7 @@ export default function VolunteerForm() {
     event.preventDefault();
     setStatus("loading");
     try {
-      await postJson("/volunteer", form);
+      await postJson("/api/volunteer", form);
       setStatus("success");
       setForm(INITIAL_FORM);
     } catch {

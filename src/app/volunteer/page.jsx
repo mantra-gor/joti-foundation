@@ -10,9 +10,9 @@ export const metadata = {
 };
 
 // Minimal contact-style form (name, email, phone, message) posting via
-// postJson() to the external PHP API — no Figma design exists yet for this
-// page, so structured fields (region, area of interest, etc.) are deferred
-// until one does. See CLAUDE.md "Known pages" / "Forms & integrations".
+// postJson() to the local /api/volunteer Route Handler — no Figma design
+// exists yet for this page, so structured fields (region, area of interest,
+// etc.) are deferred until one does. See CLAUDE.md "Forms & integrations".
 export default function VolunteerPage() {
   return (
     <Container

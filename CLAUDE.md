@@ -2,7 +2,7 @@
 
 @AGENTS.md
 
-Marketing / storytelling site for Joti Foundation, an Indian NGO running youth-led disaster response (rescue, relief, training). Next.js frontend only — no database, no CMS, no auth in this repo.
+Marketing / storytelling site for Joti Foundation, an Indian NGO running youth-led disaster response (rescue, relief, training). No database, no CMS, no auth in this repo — but it does ship a small number of Next.js Route Handlers for form email delivery, see "Forms & integrations".
 
 ## Stack
 
@@ -50,18 +50,21 @@ Header and Footer are global, wired into `src/app/layout.jsx` — don't duplicat
 
 ## Forms & integrations
 
-This repo is frontend-only by design:
+**Superseded 2026-07-27:** the original plan below (external PHP APIs, no Route Handlers) was replaced with in-repo email delivery via `nodemailer`. Kept struck through for history — follow the bullets after it instead.
 
-- No database, no Next.js Route Handlers acting as a backend, no server secrets committed here.
-- Contact, newsletter signup, donation, and "Work With Us" submissions call **external PHP APIs** hosted outside this repo (owner is building these separately).
-- Call them with `fetch` from Client Components (`"use client"`); read the API base URL from an env var (`NEXT_PUBLIC_API_BASE_URL`, see `.env.local.example`) rather than hardcoding a host. `src/lib/api.js` exports `postJson()` — the shared fetch wrapper every form should use.
-- CORS and server-side validation are the PHP API's job — this repo only needs client-side validation and loading/error/success UI states.
-- Don't reach for a Route Handler as a shortcut for "just this one form" — keep the frontend/backend boundary consistent even before the PHP APIs exist. Until a given API is ready, stub the submit handler rather than building a Next-side workaround.
-- `NewsletterForm` (footer) is built this way already: it calls `postJson("/newsletter", …)`, which throws until `NEXT_PUBLIC_API_BASE_URL` is actually set, so it renders a real error state rather than silently no-opping. A Work With Us contact/application form was deliberately **not** built yet — no screenshot has specified its fields, and inventing them would violate the "don't assume a typical NGO sitemap" rule below. Build it once that design exists.
+~~This repo is frontend-only by design: no database, no Next.js Route Handlers acting as a backend, no server secrets committed here. Contact, newsletter signup, donation, and "Work With Us" submissions call external PHP APIs hosted outside this repo. Don't reach for a Route Handler as a shortcut for "just this one form."~~
+
+Current setup:
+
+- `src/lib/mailer.js` wraps `nodemailer` with a Gmail SMTP transporter (`GMAIL_USER` / `GMAIL_APP_PASSWORD`, server-only env vars — see `.env.local.example`). `GMAIL_APP_PASSWORD` is a Google Account app password (requires 2-Step Verification on the account, generated at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)), not the account's login password. Exports `sendMail({ subject, text, replyTo })`; submissions are emailed to `CONTACT_TO_EMAIL`.
+- Each form has a matching Route Handler under `src/app/api/<name>/route.js` (`contact`, `volunteer`, `newsletter` so far) that validates required fields server-side and calls `sendMail`.
+- Client Components call these with `postJson(path, body)` from `src/lib/api.js`, which now just `fetch`s a relative path (e.g. `postJson("/api/contact", form)`) — there is no more external base URL. Keep using `postJson` as the shared wrapper for loading/error/success UI states.
+- **Donation** is not part of this pattern — a real payment flow needs a dedicated gateway integration, not email. `/donate` is still a stub; don't wire it to `sendMail` when building it.
+- New forms: add a Route Handler next to the existing ones and call `sendMail` from it, rather than reintroducing an external-API assumption.
 
 ## Rendering target
 
-Not yet decided whether this ships as a standard Next.js server deploy or a full static export. Default to normal Next.js behavior — don't add `output: 'export'` to `next.config.mjs` and don't assume Vercel-only features — until that's settled. Ask before doing anything that would foreclose one path (static export disables the default `next/image` loader and rules out Route Handlers).
+This repo now ships Route Handlers (see "Forms & integrations" above), which rules out a full static export (`output: 'export'` disables Route Handlers and the default `next/image` loader). Standard Next.js server deploy is the working assumption going forward — don't add `output: 'export'` to `next.config.mjs`.
 
 ## Project structure
 
@@ -77,7 +80,7 @@ Not yet decided whether this ships as a standard Next.js server deploy or a full
 - `/our-team` — stub, not yet built.
 - `/work-with-us` — Built: hero (with an anchor-link index into the three sections) plus Partnership, Careers, and Volunteering. Written without a Figma screenshot — all copy is derived from facts already in the repo (strategic goals, programmes, team structure, focus regions), so re-check it against the real Figma frame when one exists. Partnership and Careers CTAs point at `/contact`; the Volunteering CTA hands off to `/volunteer`.
 - `/our-story` — Built: hero (the "we can't help everyone, but everyone can help someone" motto), Our Inspiration (the late Prabjot Singh of Sri Muktsar Sahib — he is Prabkiran Brar's father, which is why `/our-team` also references Sherewala), and Ignite the Future. Copy is a rewrite of text supplied from the org's old website; no Figma frame exists for it. The whole page is deliberately text-only — no hero photo, and no portrait of Prabjot Singh, at the owner's request.
-- `/volunteer` — stub route holding the place for the volunteer application form (linked from `/work-with-us#volunteering`). Form deliberately not built: no design or field list specified yet. When it is, it posts via `postJson()` to the external PHP API, not a Route Handler.
+- `/volunteer` — Built: a minimal contact-style form (name, email, phone, message), posting via `postJson("/api/volunteer", …)` to the local Route Handler (see "Forms & integrations"). No Figma design exists yet for this page, so structured fields (region, area of interest, etc.) are deferred until one does.
 - `/donate` — stub route exists (linked from every `Donate Now` / "Support Our Mission" / "Support Their Training" CTA); not yet designed/built. Created as a dedicated route rather than an external link or modal — reasonable default, revisit if that's wrong.
 - `/reports` — Built: hero + a card grid driven by `src/lib/reports.js` (`REPORTS` array — currently empty, so the page renders a "Coming soon" state). These are work/activity reports — what Joti Foundation did, how, and where — **not** financial statements. Built as a list page rather than a single link because more reports will be published over time. To publish a report: drop the PDF under `public/documents/reports/` and add `{ title, year, description, href }` to `REPORTS` — the page picks it up automatically, no component changes needed.
 - The footer has no Press Kit — that link was removed (never a real deliverable). Legal links (Privacy Policy, Terms of Service, Refund Policy) are now real routes. An "Emergency Guide" link is not built and not confirmed as a real deliverable — don't add it without confirming first, and don't assume a typical NGO sitemap for anything else. (Our Story, Careers, Contact, and Reports point at real routes.)

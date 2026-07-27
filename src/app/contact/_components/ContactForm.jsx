@@ -21,7 +21,7 @@ export default function ContactForm() {
     event.preventDefault();
     setStatus("loading");
     try {
-      await postJson("/contact", form);
+      await postJson("/api/contact", form);
       setStatus("success");
       setForm(INITIAL_FORM);
     } catch {
