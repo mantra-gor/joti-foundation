@@ -3,31 +3,32 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Input from "@/components/ui/Input";
+import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { postJson } from "@/lib/api";
+import useFormValidation from "@/lib/useFormValidation";
 
 const INITIAL_FORM = { name: "", email: "", phone: "", message: "" };
 
+const SCHEMA = { name: true, email: true, phone: true, message: true };
+
 export default function VolunteerForm() {
-  const [form, setForm] = useState(INITIAL_FORM);
+  const { fieldProps, handleSubmit, reset, formRef } = useFormValidation(
+    INITIAL_FORM,
+    SCHEMA
+  );
   const [status, setStatus] = useState("idle");
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  }
-
-  async function handleSubmit(event) {
-    event.preventDefault();
+  const onValid = async (values) => {
     setStatus("loading");
     try {
-      await postJson("/api/volunteer", form);
+      await postJson("/api/volunteer", values);
       setStatus("success");
-      setForm(INITIAL_FORM);
+      reset();
     } catch {
       setStatus("error");
     }
-  }
+  };
 
   if (status === "success") {
     return (
@@ -40,47 +41,34 @@ export default function VolunteerForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit(onValid)}
+      noValidate
+      className="flex flex-col gap-5"
+    >
       <Input
         label="Full name"
-        name="name"
-        required
-        value={form.name}
-        onChange={handleChange}
         placeholder="Your full name"
+        {...fieldProps("name")}
       />
       <Input
         label="Email address"
-        name="email"
         type="email"
-        required
-        value={form.email}
-        onChange={handleChange}
         placeholder="you@example.com"
+        {...fieldProps("email")}
       />
       <Input
         label="Phone number"
-        name="phone"
         type="tel"
-        required
-        value={form.phone}
-        onChange={handleChange}
         placeholder="+91 00000 00000"
+        {...fieldProps("phone")}
       />
-      <label className="flex flex-col gap-2">
-        <span className="font-mono text-label-caps uppercase text-on-surface-variant">
-          Message
-        </span>
-        <textarea
-          name="message"
-          required
-          rows={5}
-          value={form.message}
-          onChange={handleChange}
-          placeholder="Tell us why you'd like to volunteer and where you're based"
-          className="resize-none rounded border border-input-border bg-surface-container-lowest px-4 py-3 font-sans text-body-md text-on-background transition-colors focus:border-primary focus:outline-none"
-        />
-      </label>
+      <Textarea
+        label="Message"
+        placeholder="Tell us why you'd like to volunteer and where you're based"
+        {...fieldProps("message")}
+      />
 
       <div className="flex flex-col gap-3">
         <Button type="submit" variant="primary" disabled={status === "loading"} className="w-fit">

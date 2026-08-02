@@ -38,9 +38,10 @@ export default function Careers() {
               <p className="max-w-xl font-sans text-body-md text-on-surface-variant">
                 Roles are posted here as they open. We also read every
                 speculative application — tell us where you would fit and why.
-                Mark your message &ldquo;Careers&rdquo; when you write to us.
+                The application form asks for the role, a link to your CV and
+                where you are based.
               </p>
-              <Button href="/contact" variant="primary" className="w-fit shrink-0">
+              <Button href="/careers" variant="primary" className="w-fit shrink-0">
                 Send Us Your Application
               </Button>
             </div>

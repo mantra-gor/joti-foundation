@@ -1,4 +1,11 @@
-export default function Input({ label, name, type = "text", error, className = "", ...rest }) {
+export default function Textarea({
+  label,
+  name,
+  rows = 5,
+  error,
+  className = "",
+  ...rest
+}) {
   const errorId = error ? `${name}-error` : undefined;
 
   return (
@@ -8,12 +15,12 @@ export default function Input({ label, name, type = "text", error, className = "
           {label}
         </span>
       )}
-      <input
+      <textarea
         name={name}
-        type={type}
+        rows={rows}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={errorId}
-        className={`rounded border bg-surface-container-lowest px-4 py-3 font-sans text-body-md text-on-background transition-colors focus:outline-none ${
+        className={`resize-none rounded border bg-surface-container-lowest px-4 py-3 font-sans text-body-md text-on-background transition-colors focus:outline-none ${
           error
             ? "border-error focus:border-error"
             : "border-input-border focus:border-primary"

@@ -108,12 +108,11 @@ export default function Partnership() {
           <div className="flex flex-col gap-4 rounded border border-card-border bg-surface-container-lowest p-8 md:flex-row md:items-center md:justify-between md:gap-8">
             <p className="max-w-xl font-sans text-body-md text-on-surface-variant">
               Tell us what you want to change and where. We will come back with
-              the programme design, the budget and the reporting cadence. Mark
-              your message &ldquo;Partnership&rdquo; so it reaches the right
-              desk.
+              the programme design, the budget and the reporting cadence. The
+              enquiry form goes straight to our partnerships desk.
             </p>
             <Button
-              href="/contact"
+              href="/partner-with-us"
               variant="primary"
               className="w-fit shrink-0"
             >
