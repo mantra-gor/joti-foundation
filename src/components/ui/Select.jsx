@@ -1,4 +1,12 @@
-export default function Input({ label, name, type = "text", error, className = "", ...rest }) {
+export default function Select({
+  label,
+  name,
+  options = [],
+  placeholder,
+  error,
+  className = "",
+  ...rest
+}) {
   const errorId = error ? `${name}-error` : undefined;
 
   return (
@@ -8,18 +16,24 @@ export default function Input({ label, name, type = "text", error, className = "
           {label}
         </span>
       )}
-      <input
+      <select
         name={name}
-        type={type}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={errorId}
-        className={`rounded border bg-surface-container-lowest px-4 py-3 font-sans text-body-md text-on-background transition-colors focus:outline-none ${
+        className={`appearance-none rounded border bg-surface-container-lowest px-4 py-3 font-sans text-body-md text-on-background transition-colors focus:outline-none ${
           error
             ? "border-error focus:border-error"
             : "border-input-border focus:border-primary"
         }`}
         {...rest}
-      />
+      >
+        {placeholder && <option value="">{placeholder}</option>}
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
       {error && (
         <span id={errorId} role="alert" className="font-sans text-sm text-error">
           {error}
