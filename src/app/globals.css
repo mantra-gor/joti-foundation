@@ -137,6 +137,21 @@
 
   /* Elevation — tonal layers and outlines, not shadows */
   --shadow-hover: 0px 4px 20px rgba(27, 48, 34, 0.05);
+
+  /* Motion — infinite partner ribbon, see PartnerRibbon.jsx. Duration is set
+     per-element via --marquee-duration so the speed stays constant as partners
+     are added. */
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+/* Travels exactly one of the two identical tracks, so the loop has no seam. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 :root {
