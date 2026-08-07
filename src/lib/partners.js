@@ -58,4 +58,10 @@ export const PARTNERS = [
     width: 250,
     height: 200,
   },
+  {
+    name: "SEEDS",
+    logo: "/images/clients/8.jpeg",
+    width: 200,
+    height: 200,
+  },
 ];
