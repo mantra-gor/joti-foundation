@@ -69,7 +69,7 @@ export default function PartnerRibbon() {
             className="max-w-3xl font-display text-headline-md text-on-background"
           >
             We work in close coordination with government disaster management
-            systems and alongside institutional partners.
+            systems and alongside supportive partners.
           </h2>
         </Container>
 

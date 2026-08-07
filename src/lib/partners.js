@@ -64,4 +64,10 @@ export const PARTNERS = [
     width: 200,
     height: 200,
   },
+  {
+    name: "Sphere India",
+    logo: "/images/clients/9.png",
+    width: 951,
+    height: 222,
+  },
 ];
