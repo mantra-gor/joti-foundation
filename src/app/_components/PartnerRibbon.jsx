@@ -45,7 +45,7 @@ function PartnerTrack({ duplicate = false }) {
             alt={partner.name}
             width={partner.width}
             height={partner.height}
-            className="h-16 w-auto max-w-36 object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-20 md:max-w-44"
+            className="h-16 w-auto max-w-36 object-contain md:h-20 md:max-w-44"
           />
         </li>
       ))}
