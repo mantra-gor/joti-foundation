@@ -29,8 +29,10 @@ export const CONTACT_DETAILS = [
   {
     icon: "phone",
     label: "Phone",
-    value: "+91-9315064855",
-    href: "tel:+919315064855",
+    value: [
+      { value: "+91-7990740762", href: "tel:+917990740762" },
+      { value: "+91-8090906249", href: "tel:+918090906249" },
+    ],
   },
   {
     icon: "mapPin",

@@ -38,14 +38,26 @@ export default function ContactDetails() {
                     {value}
                   </Link>
                 ) : Array.isArray(value) ? (
-                  value.map((line) => (
-                    <span
-                      key={line}
-                      className="font-sans text-body-md text-on-background"
-                    >
-                      {line}
-                    </span>
-                  ))
+                  value.map((line) => {
+                    const isLinked = typeof line === "object";
+                    const text = isLinked ? line.value : line;
+                    return isLinked ? (
+                      <Link
+                        key={text}
+                        href={line.href}
+                        className="font-sans text-body-md text-on-background transition-colors hover:text-primary"
+                      >
+                        {text}
+                      </Link>
+                    ) : (
+                      <span
+                        key={text}
+                        className="font-sans text-body-md text-on-background"
+                      >
+                        {text}
+                      </span>
+                    );
+                  })
                 ) : (
                   <span className="font-sans text-body-md text-on-background">
                     {value}
