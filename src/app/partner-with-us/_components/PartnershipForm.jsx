@@ -7,15 +7,12 @@ import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { submitPartnershipEnquiry } from "../actions";
+import {
+  PARTNERSHIP_OTHER,
+  PARTNERSHIP_TYPES,
+  partnershipSchema,
+} from "../partnershipTypes";
 import useFormValidation from "@/lib/useFormValidation";
-
-// Mirrors the four partner categories described on /work-with-us#partnership.
-const PARTNERSHIP_TYPES = [
-  "Government & Institutional",
-  "Corporate & CSR",
-  "Philanthropic & Foundations",
-  "Community & Civil Society",
-];
 
 const INITIAL_FORM = {
   name: "",
@@ -23,26 +20,15 @@ const INITIAL_FORM = {
   email: "",
   phone: "",
   partnershipType: "",
+  partnershipDetail: "",
   message: "",
 };
 
-// Partnership type stays optional — but if something *is* submitted it has to
-// be one of the four listed categories, not whatever a crafted POST supplies.
-const SCHEMA = {
-  name: true,
-  organisation: true,
-  email: true,
-  phone: false,
-  partnershipType: { required: false, oneOf: PARTNERSHIP_TYPES },
-  message: true,
-};
-
 export default function PartnershipForm() {
-  const { fieldProps, handleSubmit, reset, formRef } = useFormValidation(
-    INITIAL_FORM,
-    SCHEMA
-  );
+  const { values, fieldProps, handleSubmit, reset, formRef } =
+    useFormValidation(INITIAL_FORM, partnershipSchema);
   const [status, setStatus] = useState("idle");
+  const isOther = values.partnershipType === PARTNERSHIP_OTHER;
 
   const onValid = async (values) => {
     setStatus("loading");
@@ -111,6 +97,14 @@ export default function PartnershipForm() {
         options={PARTNERSHIP_TYPES}
         {...fieldProps("partnershipType")}
       />
+
+      {isOther && (
+        <Input
+          label="Please specify"
+          placeholder="Tell us what kind of partner you are"
+          {...fieldProps("partnershipDetail")}
+        />
+      )}
 
       <Textarea
         label="What do you want to change, and where?"

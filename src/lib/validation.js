@@ -14,6 +14,10 @@
 // in real names. Digits are the reliable tell for junk input.
 const NAME_PATTERN = /^[\p{L}\p{M}'’.\- ]+$/u;
 
+// Place names take the same characters as personal ones — "Thiruvananthapuram",
+// "Sri Muktsar Sahib", "Côte d'Ivoire" — and digits are the same junk tell.
+const PLACE_PATTERN = NAME_PATTERN;
+
 // Deliberately permissive: a single @, no whitespace, a dotted 2+ letter TLD.
 // Anything stricter starts rejecting addresses that genuinely deliver.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
@@ -91,6 +95,26 @@ const FIELD_RULES = {
     max: PHONE_MAX_LENGTH,
     test: validatePhone,
   },
+  city: {
+    label: "City",
+    requiredMessage: "Please enter your city.",
+    min: 2,
+    minMessage: "Please enter your city.",
+    max: 80,
+    test: (value) =>
+      PLACE_PATTERN.test(value) ||
+      "City can only contain letters, spaces, hyphens and apostrophes.",
+  },
+  country: {
+    label: "Country",
+    requiredMessage: "Please enter your country.",
+    min: 2,
+    minMessage: "Please enter your country.",
+    max: 80,
+    test: (value) =>
+      PLACE_PATTERN.test(value) ||
+      "Country can only contain letters, spaces, hyphens and apostrophes.",
+  },
   subject: {
     label: "Subject",
     requiredMessage: "Please enter a subject.",
@@ -115,6 +139,19 @@ const FIELD_RULES = {
     label: "Partnership type",
     requiredMessage: "Please choose the type of partnership.",
   },
+  preference: {
+    label: "Work preference",
+    // Optional and `oneOf`-constrained, so this only ever surfaces for a value
+    // the select can't produce — i.e. a hand-rolled POST.
+    requiredMessage: "Please choose a valid work preference.",
+  },
+  partnershipDetail: {
+    label: "Partnership type",
+    requiredMessage: "Please specify the type of partnership.",
+    min: 2,
+    minMessage: "Please specify the type of partnership.",
+    max: 120,
+  },
   message: {
     label: "Message",
     requiredMessage: "Please enter your message.",
@@ -131,7 +168,8 @@ const DEFAULT_RULE = {
 };
 
 // A schema entry is either `true`/`false` (required or not) or an object for
-// the cases that need more — currently just `oneOf` on the partnership select.
+// the cases that need more — `oneOf` on the partnership select, and `min` for a
+// form that needs a different length floor than the shared rule.
 function normaliseSchemaEntry(entry) {
   if (entry && typeof entry === "object") {
     return { required: true, ...entry };
@@ -144,15 +182,23 @@ function normaliseSchemaEntry(entry) {
  * to render. Values are validated trimmed, so whitespace never passes as input.
  */
 export function validateField(name, value, schemaEntry = true) {
-  const { required, oneOf } = normaliseSchemaEntry(schemaEntry);
+  const entry = normaliseSchemaEntry(schemaEntry);
+  const { required, oneOf } = entry;
   const rule = FIELD_RULES[name] ?? DEFAULT_RULE;
   const trimmed = typeof value === "string" ? value.trim() : "";
 
   if (!trimmed) {
     return required ? rule.requiredMessage : "";
   }
-  if (rule.min && trimmed.length < rule.min) {
-    return rule.minMessage ?? `${rule.label} is too short.`;
+  // A form may move the length floor: /volunteer's optional "area of interest"
+  // box shouldn't demand the 10 characters a support enquiry does. The rule's
+  // own `minMessage` names its own number, so an override brings its own text
+  // or falls back to the generic one.
+  const min = entry.min ?? rule.min;
+  if (min && trimmed.length < min) {
+    const minMessage =
+      entry.min === undefined ? rule.minMessage : entry.minMessage;
+    return minMessage ?? `${rule.label} is too short.`;
   }
   if (rule.max && trimmed.length > rule.max) {
     return `${rule.label} must be ${rule.max} characters or fewer.`;

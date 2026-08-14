@@ -3,19 +3,21 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Input from "@/components/ui/Input";
+import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { postJson } from "@/lib/api";
 import useFormValidation from "@/lib/useFormValidation";
-
-const INITIAL_FORM = { name: "", email: "", phone: "", message: "" };
-
-const SCHEMA = { name: true, email: true, phone: true, message: true };
+import {
+  INITIAL_VOLUNTEER,
+  VOLUNTEER_SCHEMA,
+  WORK_PREFERENCES,
+} from "../volunteerFields";
 
 export default function VolunteerForm() {
   const { fieldProps, handleSubmit, reset, formRef } = useFormValidation(
-    INITIAL_FORM,
-    SCHEMA
+    INITIAL_VOLUNTEER,
+    VOLUNTEER_SCHEMA
   );
   const [status, setStatus] = useState("idle");
 
@@ -52,21 +54,48 @@ export default function VolunteerForm() {
         placeholder="Your full name"
         {...fieldProps("name")}
       />
-      <Input
-        label="Email address"
-        type="email"
-        placeholder="you@example.com"
-        {...fieldProps("email")}
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Input
+          label="Email address"
+          type="email"
+          placeholder="you@example.com"
+          {...fieldProps("email")}
+        />
+        <Input
+          label="Phone number"
+          type="tel"
+          placeholder="+91 00000 00000"
+          {...fieldProps("phone")}
+        />
+      </div>
+
+      {/* Optional, and marked so in the label — the component has no visual
+          required/optional affordance, and this is the first form on the site
+          to mix the two. */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Input
+          label="City (optional)"
+          placeholder="Your city"
+          {...fieldProps("city")}
+        />
+        <Input
+          label="Country (optional)"
+          placeholder="Your country"
+          {...fieldProps("country")}
+        />
+      </div>
+
+      <Select
+        label="Preference (optional)"
+        options={WORK_PREFERENCES}
+        placeholder="No preference"
+        {...fieldProps("preference")}
       />
-      <Input
-        label="Phone number"
-        type="tel"
-        placeholder="+91 00000 00000"
-        {...fieldProps("phone")}
-      />
+
       <Textarea
-        label="Message"
-        placeholder="Tell us why you'd like to volunteer and where you're based"
+        label="Message (optional)"
+        placeholder="Mention your area of expertise or interest — first aid, search and rescue, logistics, community training, communications…"
         {...fieldProps("message")}
       />
 

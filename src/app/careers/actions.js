@@ -2,6 +2,8 @@
 
 import { sendMail } from "@/lib/mailer";
 import { recordSubmission } from "@/lib/mailbox";
+import { trimValues, validateForm } from "@/lib/validation";
+import { CAREERS_SCHEMA } from "./careersFields";
 
 /**
  * Careers application submit.
@@ -16,11 +18,14 @@ import { recordSubmission } from "@/lib/mailbox";
  * else is validated here.
  */
 export async function submitCareersApplication(fields) {
-  const { name, email, phone, position, portfolio, message } = fields ?? {};
-
-  if (!name || !email || !position || !message) {
-    return { error: "Missing required fields." };
+  const values = trimValues(fields ?? {});
+  const errors = validateForm(values, CAREERS_SCHEMA);
+  if (Object.keys(errors).length > 0) {
+    return { error: "Please check the form and try again." };
   }
+
+  const { name, email, phone, city, country, position, portfolio, message } =
+    values;
 
   const subject = `Careers application: ${position}`;
 
@@ -30,9 +35,10 @@ export async function submitCareersApplication(fields) {
       text: [
         `Name: ${name}`,
         `Email: ${email}`,
-        `Phone: ${phone || "—"}`,
+        `Phone: ${phone}`,
+        `Location: ${city}, ${country}`,
         `Role: ${position}`,
-        `CV / portfolio: ${portfolio || "—"}`,
+        `CV / portfolio: ${portfolio}`,
         "",
         message,
       ].join("\n"),
@@ -42,6 +48,8 @@ export async function submitCareersApplication(fields) {
     return { error: "Failed to send application." };
   }
 
+  // `city` / `country` aren't mailbox columns — they land in the row's `payload`
+  // alongside `position` and `portfolio`, so no change is needed on that side.
   // Already delivered by email — this extra write must never reach the visitor.
   await recordSubmission("careers", {
     name,
@@ -49,6 +57,8 @@ export async function submitCareersApplication(fields) {
     phone,
     subject,
     message,
+    city,
+    country,
     position,
     portfolio,
   });

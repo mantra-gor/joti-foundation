@@ -18,7 +18,11 @@ import {
  *
  * @param initialValues object of field name -> "" starting state
  * @param schema        field name -> `true` (required), `false` (optional), or
- *                      `{ required, oneOf }` for constrained fields
+ *                      `{ required, oneOf }` for constrained fields. May also be
+ *                      a `(values) => schemaObject` function, for a field whose
+ *                      required-ness depends on another (a "please specify" box
+ *                      that only matters once "Other" is chosen) — re-resolved
+ *                      on every change/blur/submit against the current values.
  */
 export default function useFormValidation(initialValues, schema) {
   const [values, setValues] = useState(initialValues);
@@ -41,11 +45,14 @@ export default function useFormValidation(initialValues, schema) {
       // Rejected characters never reach state, so the controlled input snaps
       // straight back — the box only ever holds something plausible.
       const value = sanitiseField(name, event.target.value);
-      setValues((prev) => ({ ...prev, [name]: value }));
-      // Only re-validate a field that is already complaining.
+      const nextValues = { ...values, [name]: value };
+      setValues(nextValues);
+      // Only re-validate a field that is already complaining. Resolve the schema
+      // against the post-change values so a conditional field sees the new state.
+      const rule = resolveSchema(schema, nextValues)[name];
       setErrors((prev) => {
         if (!prev[name]) return prev;
-        const message = validateField(name, value, schema[name]);
+        const message = validateField(name, value, rule);
         if (prev[name] === message) return prev;
         const next = { ...prev };
         if (message) next[name] = message;
@@ -53,15 +60,16 @@ export default function useFormValidation(initialValues, schema) {
         return next;
       });
     },
-    [schema]
+    [schema, values]
   );
 
   const handleBlur = useCallback(
     (event) => {
       const { name, value } = event.target;
-      setFieldError(name, validateField(name, value, schema[name]));
+      const rule = resolveSchema(schema, values)[name];
+      setFieldError(name, validateField(name, value, rule));
     },
-    [schema, setFieldError]
+    [schema, values, setFieldError]
   );
 
   /** Spread onto an Input/Textarea/Select alongside its label and placeholder. */
@@ -72,7 +80,7 @@ export default function useFormValidation(initialValues, schema) {
       onChange: handleChange,
       onBlur: handleBlur,
       error: errors[name],
-      required: normaliseRequired(schema[name]),
+      required: normaliseRequired(resolveSchema(schema, values)[name]),
     }),
     [values, errors, handleChange, handleBlur, schema]
   );
@@ -85,10 +93,13 @@ export default function useFormValidation(initialValues, schema) {
   const handleSubmit = useCallback(
     (onValid) => async (event) => {
       event.preventDefault();
-      const nextErrors = validateForm(values, schema);
+      const resolved = resolveSchema(schema, values);
+      const nextErrors = validateForm(values, resolved);
       setErrors(nextErrors);
 
-      const firstInvalid = Object.keys(schema).find((name) => nextErrors[name]);
+      const firstInvalid = Object.keys(resolved).find(
+        (name) => nextErrors[name]
+      );
       if (firstInvalid) {
         formRef.current?.elements?.[firstInvalid]?.focus();
         return;
@@ -110,4 +121,11 @@ export default function useFormValidation(initialValues, schema) {
 function normaliseRequired(entry) {
   if (entry && typeof entry === "object") return entry.required !== false;
   return Boolean(entry);
+}
+
+/** A schema may be a plain object or a `(values) => schemaObject` function, for
+ *  forms whose required fields depend on another field. Objects pass through
+ *  untouched, so every existing form is unaffected. */
+function resolveSchema(schema, values) {
+  return typeof schema === "function" ? schema(values) : schema;
 }

@@ -7,31 +7,12 @@ import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { submitCareersApplication } from "../actions";
 import useFormValidation from "@/lib/useFormValidation";
-
-const INITIAL_FORM = {
-  name: "",
-  email: "",
-  phone: "",
-  position: "",
-  portfolio: "",
-  message: "",
-};
-
-// Phone and portfolio are optional, but still format-checked once filled in —
-// a mistyped link is worse than no link, since nobody can chase it up.
-const SCHEMA = {
-  name: true,
-  email: true,
-  phone: false,
-  position: true,
-  portfolio: false,
-  message: true,
-};
+import { CAREERS_SCHEMA, INITIAL_APPLICATION } from "../careersFields";
 
 export default function CareersForm() {
   const { fieldProps, handleSubmit, reset, formRef } = useFormValidation(
-    INITIAL_FORM,
-    SCHEMA
+    INITIAL_APPLICATION,
+    CAREERS_SCHEMA
   );
   const [status, setStatus] = useState("idle");
 
@@ -96,19 +77,30 @@ export default function CareersForm() {
         />
       </div>
 
+      {/* Where someone is based decides which district teams they can realistically
+          reach, so it's asked outright rather than left to the message. */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Input label="City" placeholder="Your city" {...fieldProps("city")} />
+        <Input
+          label="Country"
+          placeholder="Your country"
+          {...fieldProps("country")}
+        />
+      </div>
+
       {/* Link rather than upload: the mailbox ingest API takes JSON only, so
           there is nowhere to put a file. */}
       <Input
-        label="Link to your CV or portfolio"
+        label="CV / portfolio link"
         type="url"
         placeholder="https://drive.google.com/… or https://linkedin.com/in/…"
         {...fieldProps("portfolio")}
       />
 
       <Textarea
-        label="Why this work, and where would you fit?"
+        label="Fit & purpose"
         rows={6}
-        placeholder="Tell us about your experience, where you're based, and whether you can work in remote, disaster-prone districts."
+        placeholder="Why this work, and where would you fit? Tell us about your experience, and whether you can work in remote, disaster-prone districts."
         {...fieldProps("message")}
       />
 

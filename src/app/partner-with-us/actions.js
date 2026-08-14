@@ -2,6 +2,8 @@
 
 import { sendMail } from "@/lib/mailer";
 import { recordSubmission } from "@/lib/mailbox";
+import { trimValues, validateForm } from "@/lib/validation";
+import { PARTNERSHIP_OTHER, partnershipSchema } from "./partnershipTypes";
 
 /**
  * Partnership enquiry submit.
@@ -16,12 +18,30 @@ import { recordSubmission } from "@/lib/mailbox";
  * else is validated here.
  */
 export async function submitPartnershipEnquiry(fields) {
-  const { name, organisation, email, phone, partnershipType, message } =
-    fields ?? {};
-
-  if (!name || !organisation || !email || !message) {
-    return { error: "Missing required fields." };
+  const values = trimValues(fields ?? {});
+  const errors = validateForm(values, partnershipSchema(values));
+  if (Object.keys(errors).length > 0) {
+    return { error: "Please check the form and try again." };
   }
+
+  const {
+    name,
+    organisation,
+    email,
+    phone,
+    partnershipType,
+    partnershipDetail,
+    message,
+  } = values;
+
+  // "Other" is a routing label, not a category — what the partnerships desk
+  // needs to read is the box behind it. Read the detail only when "Other" is
+  // the selection, so a stale value left behind by changing the select back
+  // (or bolted on by a crafted POST) can't ride along.
+  const type =
+    partnershipType === PARTNERSHIP_OTHER
+      ? `Other: ${partnershipDetail}`
+      : partnershipType;
 
   const subject = `Partnership enquiry: ${organisation}`;
 
@@ -33,7 +53,7 @@ export async function submitPartnershipEnquiry(fields) {
         `Organisation: ${organisation}`,
         `Email: ${email}`,
         `Phone: ${phone || "—"}`,
-        `Partnership type: ${partnershipType || "—"}`,
+        `Partnership type: ${type}`,
         "",
         message,
       ].join("\n"),
@@ -51,7 +71,7 @@ export async function submitPartnershipEnquiry(fields) {
     subject,
     message,
     organisation,
-    partnership_type: partnershipType,
+    partnership_type: type,
   });
 
   return { ok: true };
