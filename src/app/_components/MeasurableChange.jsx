@@ -1,14 +1,18 @@
 "use client";
 
 import { Heart, Timer } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
-import { IMPACT_STATS } from "@/lib/stats";
+import { useRegion } from "@/lib/regionContext";
+import { IMPACT_STATS, IMPACT_STATS_PUNJAB } from "@/lib/stats";
 
 export default function MeasurableChange() {
+  const { region } = useRegion();
+  const impactStats = region === "punjab" ? IMPACT_STATS_PUNJAB : IMPACT_STATS;
+
   return (
     <section className="relative overflow-hidden bg-secondary py-section-mobile lg:py-section-desktop">
       <div
@@ -59,21 +63,30 @@ export default function MeasurableChange() {
 
         <Reveal delay={0.15}>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded border border-on-secondary/20 bg-on-secondary/20">
-            {IMPACT_STATS.map(({ value, label }) => (
-              <motion.div
-                key={label}
-                className="flex flex-col-reverse gap-2 bg-secondary p-6"
-                whileHover={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
-                <dt className="font-sans text-body-md text-on-secondary/70">
-                  {label}
-                </dt>
-                <dd className="font-display text-headline-md text-on-secondary">
-                  {value}
-                </dd>
-              </motion.div>
-            ))}
+            <AnimatePresence mode="wait" initial={false}>
+              {impactStats.map(({ value, label }, index) => (
+                <motion.div
+                  key={region + "-" + label}
+                  className="flex flex-col-reverse gap-2 bg-secondary p-6"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{
+                    duration: 0.25,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: index * 0.04,
+                  }}
+                  whileHover={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                >
+                  <dt className="font-sans text-body-md text-on-secondary/70">
+                    {label}
+                  </dt>
+                  <dd className="font-display text-headline-md text-on-secondary">
+                    {value}
+                  </dd>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </dl>
         </Reveal>
       </Container>

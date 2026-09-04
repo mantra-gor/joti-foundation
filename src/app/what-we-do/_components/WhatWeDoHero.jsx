@@ -1,12 +1,29 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
+import { useRegion } from "@/lib/regionContext";
+
+const INTRO = {
+  national:
+    "Joti Foundation is a youth-led, women-led disaster resilience non-profit organisation focused on saving lives, strengthening communities and building resilience across the complete Disaster Management Cycle. The cycle includes Prevention and Mitigation, Preparedness, Response and Recovery. Guided by the belief that every minute matters during a disaster, JF works to empower and equip local youth to become first responders capable of delivering timely rescue and relief starting from the critical 24 hours after a disaster, while bridging the physical connection needed to reach disaster-affected communities.",
+  punjab:
+    "Joti Foundation was born in Punjab. Our core programmes — Roshan Punjab (children's eye health), Flood Response across the border belt, and the Climate Action water programmes — are all rooted here. Punjab is where we learned that youth-led, community-owned response is the fastest and most trusted path to saving lives. Everything we build nationally builds on what we have proven in this state.",
+};
+
+const fadeSlide = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+};
 
 export default function WhatWeDoHero() {
+  const { region } = useRegion();
+
   return (
     <section className="py-section-mobile lg:py-section-desktop">
       <Container className="grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -20,18 +37,15 @@ export default function WhatWeDoHero() {
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="max-w-2xl font-sans text-body-lg text-on-surface-variant">
-              Joti Foundation is a youth-led, women-led disaster resilience
-              non-profit organisation focused on saving lives, strengthening
-              communities and building resilience across the complete Disaster
-              Management Cycle. The cycle includes Prevention and Mitigation,
-              Preparedness, Response and Recovery. Guided by the belief that
-              every minute matters during a disaster, JF works to empower and
-              equip local youth to become first responders capable of delivering
-              timely rescue and relief starting from the critical 24 hours after
-              a disaster, while bridging the physical connection needed to reach
-              disaster-affected communities.
-            </p>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p
+                key={region + "-intro"}
+                className="max-w-2xl font-sans text-body-lg text-on-surface-variant"
+                {...fadeSlide}
+              >
+                {INTRO[region]}
+              </motion.p>
+            </AnimatePresence>
           </Reveal>
         </div>
 

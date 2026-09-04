@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
+import RegionToggle from "@/components/ui/RegionToggle";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 
 const navLinks = [
@@ -77,6 +78,11 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          {/* Toggle visible at lg+ only — at md the header is already
+              crowded with 4 nav links and two action buttons. */}
+          <span className="hidden lg:block">
+            <RegionToggle />
+          </span>
           <Button href="/volunteer" variant="ghost" size="sm">
             Volunteer
           </Button>
@@ -176,6 +182,8 @@ export default function Header() {
               );
             })}
             <div className="mt-2 flex flex-col gap-2 border-t border-outline-variant pt-3">
+              {/* Full-width toggle in mobile menu — matches the button width */}
+              <RegionToggle fullWidth />
               <Button
                 href="/work-with-us"
                 variant="ghost"

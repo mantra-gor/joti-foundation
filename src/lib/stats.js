@@ -39,6 +39,17 @@ export const HEADLINE_STATS = [
   STAT.activeVolunteers,
 ];
 
+/**
+ * Punjab view: hero strip — leads with the two biggest Punjab-programme
+ * figures (Roshan Punjab children screening + flood beneficiaries).
+ */
+export const HEADLINE_STATS_PUNJAB = [
+  STAT.floodBeneficiaries,
+  STAT.childrenScreened,
+  STAT.spectacles,
+  STAT.activeVolunteers,
+];
+
 /** Full cross-programme impact set, "Volunteers, Impact & Stories from the Field". */
 export const IMPACT_STATS = [
   // STAT.floodBeneficiaries,
@@ -49,6 +60,18 @@ export const IMPACT_STATS = [
   STAT.borderVillages,
   STAT.continuousRescue,
   STAT.assamVillages,
+];
+
+/**
+ * Punjab view: impact set — drops the Assam stat (national expansion)
+ * so donors see only Punjab-rooted numbers.
+ */
+export const IMPACT_STATS_PUNJAB = [
+  STAT.childrenScreened,
+  STAT.spectacles,
+  STAT.activeVolunteers,
+  STAT.borderVillages,
+  STAT.continuousRescue,
 ];
 
 /** Punjab Floods 2025 — the scale of the crisis JF responded to. */

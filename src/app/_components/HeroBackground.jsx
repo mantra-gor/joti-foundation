@@ -5,41 +5,29 @@ import Image from "next/image";
 
 const ROTATION_INTERVAL_MS = 4000;
 
-const images = [
-  {
-    src: "/images/assam-flood-2026/IMG_7269.JPG.jpeg",
-    alt: "Three women wade chest-deep through muddy floodwater past a submerged village shopfront, carrying belongings above the waterline",
-  },
-  {
-    src: "/images/assam-flood-2026/IMG_7277.JPG.jpeg",
-    alt: "Residents wait on the tin roof of a flooded market row as brown water surges through the street below",
-  },
-  {
-    src: "/images/assam-flood-2026/IMG_7275.JPG.jpeg",
-    alt: "Floodwater standing at door height inside a village home, its veranda furniture half submerged",
-  },
-  {
-    src: "/images/assam-flood-2026/IMG_7276.JPG.jpeg",
-    alt: "A cluster of tin-roofed village houses cut off by floodwater that has risen to their windows",
-  },
-  {
-    src: "/images/assam-flood-2026/IMG_7274.JPG.jpeg",
-    alt: "A submerged homestead seen across a wide expanse of floodwater under clear sky",
-  },
-];
-
-export default function HeroBackground() {
+/**
+ * HeroBackground — cycles through `images` on a timer.
+ *
+ * Positioning and z-index live on the AnimatePresence wrapper in Hero.jsx
+ * so that Framer Motion can crossfade two instances simultaneously.
+ * This component is intentionally free of absolute/z-index so the parent
+ * can control the stacking layer during the transition.
+ */
+export default function HeroBackground({ images }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setActiveIndex((index) => (index + 1) % images.length);
+      setActiveIndex((i) => (i + 1) % images.length);
     }, ROTATION_INTERVAL_MS);
     return () => clearInterval(id);
+    // images.length is stable for the life of this mount; the component
+    // remounts (via parent key) when the region changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0">
       {images.map((image, index) => (
         <Image
           key={image.src}
