@@ -63,7 +63,7 @@ const tiers = [
       },
       {
         name: "Dr Gopal Krishan",
-        title: "Technical Advisor",
+        title: "Technical Advisor - Water Resources",
         bio: "A scientist with over 25 years of experience. Currently at the National Institute of Hydrology, Roorkee, and an Ex-Researcher at the Indo-Gangetic Basin, Groundwater Resilience Project, British Geological Survey, United Kingdom.",
         photo: "/images/team/gopal_krishan.jpeg",
         linkedin: "#",
