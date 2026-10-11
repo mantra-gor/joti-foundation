@@ -102,7 +102,7 @@ export const PARTNERS = [
   },
   {
     name: "Agrocel Industries",
-    logo: "/images/clients/15.jpg",
+    logo: "/images/clients/15.png",
     width: 200,
     height: 200,
   },
