@@ -14,7 +14,7 @@ export default function StatsStrip() {
   return (
     <section className="bg-secondary">
       <Container className="grid grid-cols-2 gap-8 py-10 lg:grid-cols-4">
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence initial={false}>
           {stats.map((stat, index) => (
             <motion.div
               key={region + "-" + stat.label}

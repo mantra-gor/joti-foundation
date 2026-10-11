@@ -63,7 +63,7 @@ export default function MeasurableChange() {
 
         <Reveal delay={0.15}>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded border border-on-secondary/20 bg-on-secondary/20">
-            <AnimatePresence mode="wait" initial={false}>
+            <AnimatePresence initial={false}>
               {impactStats.map(({ value, label }, index) => (
                 <motion.div
                   key={region + "-" + label}

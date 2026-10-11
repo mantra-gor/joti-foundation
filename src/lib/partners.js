@@ -70,4 +70,52 @@ export const PARTNERS = [
     width: 951,
     height: 222,
   },
+  {
+    name: "Amazon",
+    logo: "/images/clients/10.png",
+    width: 3216,
+    height: 1352,
+  },
+  {
+    name: "CFID",
+    logo: "/images/clients/11.webp",
+    width: 426,
+    height: 158,
+  },
+  {
+    name: "Navrachana Higher Secondary School",
+    logo: "/images/clients/12.png",
+    width: 1997,
+    height: 788,
+  },
+  {
+    name: "Donatekart Foundation",
+    logo: "/images/clients/13.png",
+    width: 6215,
+    height: 1223,
+  },
+  {
+    name: "Government of Assam",
+    logo: "/images/clients/14.png",
+    width: 350,
+    height: 365,
+  },
+  {
+    name: "Agrocel Industries",
+    logo: "/images/clients/15.jpg",
+    width: 200,
+    height: 200,
+  },
+  {
+    name: "Feeding India",
+    logo: "/images/clients/16.png",
+    width: 447,
+    height: 447,
+  },
+  {
+    name: "Touch of Color",
+    logo: "/images/clients/17.png",
+    width: 250,
+    height: 75,
+  },
 ];
