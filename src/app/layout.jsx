@@ -40,13 +40,13 @@ export default function RootLayout({ children }) {
       className={`${bricolageGrotesque.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <PersonaProvider>
-          <RegionProvider>
+        <RegionProvider>
+          <PersonaProvider>
             <Header />
             <main className="flex flex-1 flex-col">{children}</main>
             <Footer />
-          </RegionProvider>
-        </PersonaProvider>
+          </PersonaProvider>
+        </RegionProvider>
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>

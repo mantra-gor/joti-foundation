@@ -25,20 +25,21 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Shield, Heart } from "lucide-react";
 import { usePersona } from "@/lib/personaContext";
+import { useRegion } from "@/lib/regionContext";
 
 /* ── Data config ─────────────────────────────────────────────────────── */
 
 const PERSONAS = [
   {
     id: "disaster",
-    eyebrow: "Emergency Response",
-    headline: "When seconds count,\nwe're already there.",
+    eyebrow: "Disaster Relief",
+    headline: "Emergency response across India",
     description:
-      "Real-time disaster relief — floods, earthquakes, and crises — delivered by trained rapid-response teams on the ground within hours.",
+      "Rapid flood and disaster relief across India — including flood relief in Punjab, Assam, and critical emergency response zones.",
     image: "/images/g5.JPG",
     imageAlt:
-      "Joti Foundation responders in life jackets loading supplies into an inflatable rescue boat",
-    cta: { label: "Explore Relief Work", href: "/what-we-do" },
+      "Joti Foundation emergency response teams providing flood relief across India",
+    cta: { label: "Explore Emergency Response", href: "/what-we-do" },
     Icon: Shield,
     /** Tailwind-safe class strings (used for accent borders / buttons) */
     accentBorder: "border-[#b32922]",
@@ -49,13 +50,14 @@ const PERSONAS = [
   },
   {
     id: "social",
-    eyebrow: "Community Impact",
-    headline: "Spectacles, education,\nand enduring change.",
+    eyebrow: "Community Welfare",
+    headline: "Community impact in Punjab",
     description:
-      "Long-term social programmes — spectacle donations, education access, and community welfare that transform lives permanently.",
+      "Focused community initiatives in Punjab — Safe Drinking Water, Children’s Eye Health — Roshan Punjab, and enduring grassroots welfare.",
     image: "/images/c10.JPG",
-    imageAlt: "Joti Foundation volunteers distributing aid and working with community members",
-    cta: { label: "See Our Programmes", href: "/what-we-do" },
+    imageAlt:
+      "Joti Foundation volunteers distributing aid and working with community members",
+    cta: { label: "Explore Punjab Impact", href: "/what-we-do" },
     Icon: Heart,
     accentBorder: "border-[#4d6453]",
     accentBg: "bg-[#4d6453]",
@@ -134,12 +136,12 @@ function PersonaCard({ persona, onSelect, selectedId }) {
         isSelected
           ? `${persona.accentBorder} shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_8px_40px_rgba(0,0,0,0.5)]`
           : "border-white/15 hover:border-white/30 cursor-pointer",
-        "md:min-h-[460px] min-h-[200px]",
+        "md:min-h-[460px] min-h-[190px]",
       ]
         .filter(Boolean)
         .join(" ")}
       onClick={() => !selectedId && onSelect(persona.id)}
-      aria-label={`Choose ${persona.eyebrow} experience`}
+      aria-label={`Choose ${persona.headline} experience`}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
@@ -167,7 +169,7 @@ function PersonaCard({ persona, onSelect, selectedId }) {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-end h-full p-6 md:p-8 gap-3 md:gap-4">
+      <div className="relative z-10 flex flex-col justify-end h-full p-5 md:p-8 gap-2.5 md:gap-4">
         {/* Eyebrow */}
         <div className="flex items-center gap-2">
           <persona.Icon
@@ -187,15 +189,15 @@ function PersonaCard({ persona, onSelect, selectedId }) {
 
         {/* Headline */}
         <h2
-          className="font-display text-[24px] leading-[30px] md:text-[30px] md:leading-[36px] font-bold text-white tracking-[-0.02em] whitespace-pre-line"
+          className="font-display text-[20px] leading-[26px] md:text-[28px] md:leading-[34px] font-bold text-white tracking-[-0.02em]"
           style={{ textShadow: "0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.8)" }}
         >
           {persona.headline}
         </h2>
 
-        {/* Description — hidden on mobile to keep sheet compact */}
+        {/* Description — visible with 2-line clamp on mobile, full on desktop */}
         <p
-          className="hidden md:block font-sans text-[14px] leading-[23px] text-white font-normal"
+          className="font-sans text-[12px] leading-[18px] md:text-[14px] md:leading-[22px] text-white/85 font-normal line-clamp-2 md:line-clamp-none"
           style={{ textShadow: "0 1px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7)" }}
         >
           {persona.description}
@@ -209,7 +211,7 @@ function PersonaCard({ persona, onSelect, selectedId }) {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               className={[
-                "mt-1 inline-flex items-center gap-2 rounded-[4px] px-5 py-2.5 text-[13px] font-semibold tracking-[0.02em]",
+                "mt-1 inline-flex items-center gap-2 rounded-[4px] px-4 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[13px] font-semibold tracking-[0.02em]",
                 persona.accentBg,
                 "text-white",
               ].join(" ")}
@@ -231,7 +233,7 @@ function PersonaCard({ persona, onSelect, selectedId }) {
                 onSelect(persona.id);
               }}
               className={[
-                "mt-1 inline-flex items-center gap-2 rounded-[4px] px-5 py-2.5 text-[13px] font-semibold tracking-[0.02em]",
+                "mt-1 inline-flex items-center gap-2 rounded-[4px] px-4 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[13px] font-semibold tracking-[0.02em] w-fit",
                 "bg-black/40 border border-white/30 text-white",
                 "hover:bg-black/55 hover:border-white/50",
                 "transition-all duration-200",
@@ -262,6 +264,7 @@ function PersonaCard({ persona, onSelect, selectedId }) {
 
 export default function PersonaSelector() {
   const { setPersona } = usePersona();
+  const { setRegion } = useRegion();
   const [mounted, setMounted] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -300,6 +303,14 @@ export default function PersonaSelector() {
   function handleSelect(id) {
     if (selectedId) return; // already selecting
     setSelectedId(id);
+    const targetRegion = id === "disaster" ? "national" : "punjab";
+    setRegion(targetRegion);
+    try {
+      localStorage.setItem("jf-region", targetRegion);
+      window.dispatchEvent(new Event("jf-region-change"));
+    } catch {
+      // ignore
+    }
     /* Short delay so the "Entering…" animation is visible before the
        overlay exits. PersonaProvider will then hide us by setting state. */
     setTimeout(() => {
@@ -349,15 +360,15 @@ export default function PersonaSelector() {
           exit="exit"
           className={[
             /* Glassmorphic panel with stronger contrast against the backdrop */
-            "bg-[#0a110d]/90 md:bg-white/[0.05] md:backdrop-blur-md",
+            "bg-[#0a110d]/95 md:bg-white/[0.05] md:backdrop-blur-md",
             "border border-white/[0.10]",
             "shadow-[0_24px_80px_rgba(0,0,0,0.85)]",
 
             /* Desktop: floating modal */
             "md:relative md:rounded-[4px] md:w-full md:max-w-[860px] md:mx-4 md:my-auto",
 
-            /* Mobile: full-width bottom sheet */
-            "fixed bottom-0 left-0 right-0 md:static rounded-t-[12px] md:rounded-[4px]",
+            /* Mobile: full-width bottom sheet / drawer */
+            "fixed bottom-0 left-0 right-0 md:static rounded-t-[16px] md:rounded-[4px] max-h-[92vh] overflow-y-auto",
           ]
             .filter(Boolean)
             .join(" ")}
@@ -369,9 +380,9 @@ export default function PersonaSelector() {
           </div>
 
           {/* Header */}
-          <header className="px-6 pt-6 pb-4 md:px-10 md:pt-10 md:pb-6 text-center">
+          <header className="px-6 pt-5 pb-3 md:px-10 md:pt-10 md:pb-6 text-center">
             {/* Logotype / brand signal */}
-            <div className="mb-3 flex items-center justify-center gap-2">
+            <div className="mb-2 md:mb-3 flex items-center justify-center gap-2">
               <div className="h-px w-8 bg-white/20" aria-hidden="true" />
               <span className="font-mono text-[10px] font-medium tracking-[0.15em] uppercase text-white/50">
                 Joti Foundation
@@ -379,8 +390,8 @@ export default function PersonaSelector() {
               <div className="h-px w-8 bg-white/20" aria-hidden="true" />
             </div>
 
-            <h1 className="font-display text-[24px] leading-[30px] md:text-[34px] md:leading-[42px] font-bold text-white tracking-[-0.02em]">
-              How would you like to{" "}
+            <h1 className="font-display text-[22px] leading-[28px] md:text-[34px] md:leading-[42px] font-bold text-white tracking-[-0.02em]">
+              What would you like to{" "}
               <span
                 className="relative inline-block"
                 style={{
@@ -392,11 +403,11 @@ export default function PersonaSelector() {
                   backgroundClip: "text",
                 }}
               >
-                explore our work?
+                see?
               </span>
             </h1>
-            <p className="mt-2 font-sans text-[14px] md:text-[15px] leading-[22px] text-white/55">
-              Choose the experience that matters most to you.
+            <p className="mt-1.5 md:mt-2 font-sans text-[13px] md:text-[15px] leading-[19px] md:leading-[22px] text-white/60">
+              Select an initiative to explore our ongoing work and impact.
             </p>
           </header>
 
@@ -414,8 +425,8 @@ export default function PersonaSelector() {
 
           {/* Footer note */}
           <div className="px-6 pb-5 md:px-10 md:pb-8 text-center">
-            <p className="font-mono text-[10px] tracking-[0.08em] uppercase text-white/25">
-              You can explore all programmes after selecting your focus
+            <p className="font-mono text-[10px] tracking-[0.08em] uppercase text-white/35">
+              You can switch between initiatives at any time
             </p>
           </div>
         </motion.div>
