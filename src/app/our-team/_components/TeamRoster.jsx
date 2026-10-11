@@ -41,6 +41,13 @@ const tiers = [
     label: "Advisory Board",
     members: [
       {
+        name: "Manish Jain",
+        title: "Technical Advisor - MEAL",
+        bio: "An Oxford alumnus and senior international development professional with over 30 years of leadership and advisory experience across six countries. A former Country Director, Head of Mission and MEAL Adviser, he brings expertise in humanitarian response, programme strategy, organisational strengthening and resource mobilisation.",
+        photo: "/images/team/manish_jain.png",
+        linkedin: "#",
+      },
+      {
         name: "Ghanshyam Jethwa",
         title: "Strategic Advisor - Partnerships & Growth",
         bio: "An international strategic leader with over 30 years of experience of managing complex emergencies and development programmes in four countries and 28 states of India.",
@@ -48,8 +55,15 @@ const tiers = [
         linkedin: "#",
       },
       {
+        name: "Kushal Neogy",
+        title: "Technical Advisor - Internal Policies",
+        bio: "A seasoned development professional with experience across five continents and 30 years of leadership at CRS. Rooted in community service, he specialises in NGO management, safeguarding, partnerships, localisation and humanitarian response. He strengthens organisational capacity and leads safeguarding and large-scale humanitarian programmes, supporting faith-based and community organisations worldwide.",
+        photo: "/images/team/kushal_neogy.jpg",
+        linkedin: "#",
+      },
+      {
         name: "Dr Gopal Krishan",
-        title: "Technical Advisor",
+        title: "Technical Advisor - Water Resources",
         bio: "A scientist with over 25 years of experience. Currently at the National Institute of Hydrology, Roorkee, and an Ex-Researcher at the Indo-Gangetic Basin, Groundwater Resilience Project, British Geological Survey, United Kingdom.",
         photo: "/images/team/gopal_krishan.jpeg",
         linkedin: "#",
