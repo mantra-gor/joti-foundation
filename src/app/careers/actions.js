@@ -1,6 +1,5 @@
 "use server";
 
-import { sendMail } from "@/lib/mailer";
 import { recordSubmission } from "@/lib/mailbox";
 import { trimValues, validateForm } from "@/lib/validation";
 import { CAREERS_SCHEMA } from "./careersFields";
@@ -30,38 +29,20 @@ export async function submitCareersApplication(fields) {
   const subject = `Careers application: ${position}`;
 
   try {
-    await sendMail({
+    await recordSubmission("careers", {
+      name,
+      email,
+      phone,
       subject,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Location: ${city}, ${country}`,
-        `Role: ${position}`,
-        `CV / portfolio: ${portfolio}`,
-        "",
-        message,
-      ].join("\n"),
-      replyTo: email,
+      message,
+      city,
+      country,
+      position,
+      portfolio,
     });
   } catch {
     return { error: "Failed to send application." };
   }
-
-  // `city` / `country` aren't mailbox columns — they land in the row's `payload`
-  // alongside `position` and `portfolio`, so no change is needed on that side.
-  // Already delivered by email — this extra write must never reach the visitor.
-  await recordSubmission("careers", {
-    name,
-    email,
-    phone,
-    subject,
-    message,
-    city,
-    country,
-    position,
-    portfolio,
-  });
 
   return { ok: true };
 }

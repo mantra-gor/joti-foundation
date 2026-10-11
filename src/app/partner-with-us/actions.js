@@ -1,6 +1,5 @@
 "use server";
 
-import { sendMail } from "@/lib/mailer";
 import { recordSubmission } from "@/lib/mailbox";
 import { trimValues, validateForm } from "@/lib/validation";
 import { PARTNERSHIP_OTHER, partnershipSchema } from "./partnershipTypes";
@@ -46,33 +45,18 @@ export async function submitPartnershipEnquiry(fields) {
   const subject = `Partnership enquiry: ${organisation}`;
 
   try {
-    await sendMail({
+    await recordSubmission("partnership", {
+      name,
+      email,
+      phone,
       subject,
-      text: [
-        `Name: ${name}`,
-        `Organisation: ${organisation}`,
-        `Email: ${email}`,
-        `Phone: ${phone || "—"}`,
-        `Partnership type: ${type}`,
-        "",
-        message,
-      ].join("\n"),
-      replyTo: email,
+      message,
+      organisation,
+      partnership_type: type,
     });
   } catch {
     return { error: "Failed to send enquiry." };
   }
-
-  // Already delivered by email — this extra write must never reach the visitor.
-  await recordSubmission("partnership", {
-    name,
-    email,
-    phone,
-    subject,
-    message,
-    organisation,
-    partnership_type: type,
-  });
 
   return { ok: true };
 }
