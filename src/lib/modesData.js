@@ -13,7 +13,8 @@ export const MODES_DATA = {
     id: "national",
     modeName: "Emergency Response Across India",
     shortName: "Emergency Response",
-    subtitle: "Rapid Humanitarian Action Across Flood and Disaster Zones in India",
+    subtitle:
+      "Rapid Humanitarian Action Across Flood and Disaster Zones in India",
 
     // Active Banner at top of page
     activeBar: {
@@ -152,7 +153,8 @@ export const MODES_DATA = {
           title: "Safe Water Without Plastic Waste",
           description:
             "Mobile community water-purification units deployed during emergencies to eliminate waterborne disease risk while preventing thousands of single-use plastic bottles from polluting disaster zones.",
-          image: "/images/water_related/safe-drinking-water-purification-unit.jpg",
+          image:
+            "/images/water_related/safe-drinking-water-purification-unit.jpg",
           alt: "Mobile Instawater community water-purification unit installed in the field",
         },
       ],
@@ -332,7 +334,8 @@ export const MODES_DATA = {
     id: "punjab",
     modeName: "Community Impact in Punjab",
     shortName: "Community Impact",
-    subtitle: "Children's Eye Health, Youth Leadership, Women's Livelihoods & Water Security",
+    subtitle:
+      "Children's Eye Health, Youth Leadership, Women's Livelihoods & Water Security",
 
     // Active Banner at top of page
     activeBar: {
@@ -359,10 +362,6 @@ export const MODES_DATA = {
           alt: "Rural woman artisan crafting detailed handloom embroidery in Punjab",
         },
         {
-          src: "/images/water_related/safe-drinking-water-tap-drinking.jpg",
-          alt: "Child drinking pure safe water from community tap in Punjab",
-        },
-        {
           src: "/images/eyes/roshan-punjab-eye-screening-trial-frames.jpg",
           alt: "Child undergoing eye examination with optometrist trial frame in school",
         },
@@ -373,10 +372,6 @@ export const MODES_DATA = {
         {
           src: "/images/youth/youth-sports-volunteers-khel-saathis.jpg",
           alt: "Khel Saathis and youth sports volunteers gathered on village sports grounds",
-        },
-        {
-          src: "/images/water_related/safe-drinking-water-purification-unit.jpg",
-          alt: "Advanced community water purification unit installed in Punjab",
         },
       ],
     },
@@ -422,7 +417,8 @@ export const MODES_DATA = {
           title: "Roshan Punjab — Clearer Vision for a Brighter Future",
           description:
             "Implemented under a formal MoU with the Government of Punjab. 353,349 children screened across five districts and 30,723 corrective spectacles distributed, including 22,121 to first-time wearers.",
-          image: "/images/eyes/roshan-punjab-students-spectacles-distribution.jpg",
+          image:
+            "/images/eyes/roshan-punjab-students-spectacles-distribution.jpg",
           alt: "School children smiling with newly prescribed spectacles under Roshan Punjab",
           objectPosition: "object-top",
         },
@@ -452,7 +448,8 @@ export const MODES_DATA = {
           title: "Water Security & Dignity for Every Woman",
           description:
             "Deployed 6 community water-purification units (~Rs. 40 lakh) in Punjab. Paired with community menstrual health awareness and free reusable products in Sri Muktsar Sahib.",
-          image: "/images/water_related/safe-drinking-water-purification-unit.jpg",
+          image:
+            "/images/water_related/safe-drinking-water-purification-unit.jpg",
           alt: "Community water purification unit installed in Punjab",
         },
       ],
@@ -486,7 +483,8 @@ export const MODES_DATA = {
         title: "Rooted in Service, Building Resilient Communities",
         description:
           "Joti Foundation’s story began with two generations of a family quietly serving the communities around them. In Punjab, we stand alongside communities across five core pillars: Children's Eye Health (Roshan Punjab), Youth Sports (Mera Pind Meri Khed), Women's Economic Independence, Menstrual Hygiene, and Safe Drinking Water.",
-        image: "/images/eyes/roshan-punjab-students-spectacles-distribution.jpg",
+        image:
+          "/images/eyes/roshan-punjab-students-spectacles-distribution.jpg",
         alt: "Students holding new spectacles in Punjab school under Roshan Punjab",
       },
       inTheField: {
@@ -537,8 +535,7 @@ export const MODES_DATA = {
           eyebrow: "Children’s Eye Health — Roshan Punjab",
           title: "Clearer Vision for a Brighter Future",
           badge: "MoU with Govt. of Punjab",
-          lead:
-            "For a child, a pair of spectacles can mean far more than clearer sight; it can restore confidence, classroom participation and the ability to learn.",
+          lead: "For a child, a pair of spectacles can mean far more than clearer sight; it can restore confidence, classroom participation and the ability to learn.",
           paragraphs: [
             "Childhood vision problems often go unrecognised, with difficulty concentrating or declining classroom performance mistaken for a lack of interest in learning. Implemented under a formal MoU with the Government of Punjab, Roshan Punjab brings eye care closer to children through school-based screening, teacher engagement, optometrist assessments, referral pathways and corrective spectacles.",
             "During Phase I, the programme screened 353,349 children across five districts and distributed 30,723 corrective spectacles, including 22,121 to first-time wearers. A further 1,871 children were referred for assessment and care. The programme also reached 6,407 truck drivers and community members, including targeted vision support for drivers to promote safer roads.",
@@ -570,8 +567,7 @@ export const MODES_DATA = {
           eyebrow: "Youth Development & Sports",
           title: "Mera Pind Meri Khed — From Playgrounds to Future Leadership",
           badge: "60 Villages in Sri Muktsar Sahib",
-          lead:
-            "Building a youth-led sports ecosystem across 60 villages of Sri Muktsar Sahib, aiming to reach over 10,000 young people and create spaces where they can play, belong, lead and aspire.",
+          lead: "Building a youth-led sports ecosystem across 60 villages of Sri Muktsar Sahib, aiming to reach over 10,000 young people and create spaces where they can play, belong, lead and aspire.",
           paragraphs: [
             "Particular emphasis is placed on adolescent girls and young women, enabling their participation through safe, inclusive spaces and equal opportunities to train, compete and lead.",
             "With locally rooted Khel Saathis, regular sporting engagement, coaching and pathways from village grounds to competitive leagues, sport becomes a means to nurture discipline, confidence, teamwork and leadership.",
@@ -601,10 +597,10 @@ export const MODES_DATA = {
         {
           id: "women-economic-independence",
           eyebrow: "Rural Women's Empowerment",
-          title: "Economic Independence Among Rural Women: From Craft to Confidence",
+          title:
+            "Economic Independence Among Rural Women: From Craft to Confidence",
           badge: "Chandigarh Boutique & Rural SHGs",
-          lead:
-            "Assisting rural women through self-help groups, enabling them to access credit, strengthen enterprise-management skills and build reliable supply chains that connect their craftsmanship with wider markets.",
+          lead: "Assisting rural women through self-help groups, enabling them to access credit, strengthen enterprise-management skills and build reliable supply chains that connect their craftsmanship with wider markets.",
           paragraphs: [
             "By helping women secure fairer value for their work, we seek to transform traditional skills into sustainable livelihoods and create pathways towards greater financial independence. As women gain greater economic agency, they are better positioned to participate in household decisions and invest in their families’ education, nutrition, healthcare and overall well-being. Beyond improving incomes, this intervention strengthens women’s confidence, dignity and leadership.",
             "Through a dedicated boutique in Chandigarh, we have connected a growing group of women artisans with customers and created a platform for their products to reach wider markets.",
@@ -634,10 +630,10 @@ export const MODES_DATA = {
         {
           id: "menstrual-hygiene",
           eyebrow: "Women’s Dignity & Health",
-          title: "Menstrual Hygiene Programme — Safety and Dignity for Every Woman",
+          title:
+            "Menstrual Hygiene Programme — Safety and Dignity for Every Woman",
           badge: "Free Reusable Products & Safe Dialogue",
-          lead:
-            "Menstruation is a natural part of life, yet silence, stigma and misinformation continue to prevent many women and adolescent girls from managing it safely and with dignity.",
+          lead: "Menstruation is a natural part of life, yet silence, stigma and misinformation continue to prevent many women and adolescent girls from managing it safely and with dignity.",
           paragraphs: [
             "In Sukma, Chhattisgarh, we worked with tribal communities to address menstrual-health challenges through awareness, practical guidance and access to appropriate menstrual products. The initiative created safe spaces for women and girls to discuss menstruation openly, challenge harmful myths and make informed choices about their health. Participants were also provided with free reusable menstrual products and guidance on their safe use and care.",
             "Building on this experience, we continue our menstrual health and hygiene work in Sri Muktsar Sahib district, Punjab. The programme engages women and adolescent girls through community-based awareness, promotes safe hygiene practices and works to reduce the shame and social restrictions associated with menstruation. By combining knowledge, access and dialogue, the initiative seeks to ensure that every woman and girl can manage menstruation safely, confidently and with dignity.",
@@ -668,8 +664,7 @@ export const MODES_DATA = {
           eyebrow: "Water Security & Climate Resilience",
           title: "Safe Drinking Water — Safe Water, Lower Disease Risk",
           badge: "6 Purification Units in Punjab",
-          lead:
-            "We approach water security as both a development priority and a cornerstone of climate resilience, bringing together access to safe drinking water, community purification systems, groundwater awareness and sustainable water management.",
+          lead: "We approach water security as both a development priority and a cornerstone of climate resilience, bringing together access to safe drinking water, community purification systems, groundwater awareness and sustainable water management.",
           paragraphs: [
             "The Foundation has mobilised and deployed six water-purification units valued at approximately Rs. 40 lakh in Punjab. These systems help protect public health, preserve dignity and maintain access to an essential service when vulnerable communities face an increased risk of waterborne diseases.",
             "This commitment extends into emergencies: mobile community water-purification systems, known as Instawater, were deployed during the Assam and Bihar floods to provide safe drinking water where conventional supply systems had been disrupted.",
@@ -677,7 +672,10 @@ export const MODES_DATA = {
           ],
           stats: [
             { value: "6 Units", label: "Water Purification Systems Deployed" },
-            { value: "Rs. 40 Lakh", label: "Infrastructure Mobilised in Punjab" },
+            {
+              value: "Rs. 40 Lakh",
+              label: "Infrastructure Mobilised in Punjab",
+            },
             { value: "Instawater", label: "Mobile Emergency Systems" },
             { value: "Zero Waste", label: "Eliminating Plastic Water Bottles" },
           ],
