@@ -1,25 +1,42 @@
+"use client";
+
+import { useRegion } from "@/lib/regionContext";
 import WhatWeDoHero from "./_components/WhatWeDoHero";
-import OurApproach from "./_components/OurApproach";
-import Programmes from "./_components/Programmes";
 import InTheField from "./_components/InTheField";
+import AssamFloodResponse2026 from "./_components/AssamFloodResponse2026";
+import BiharFloodResponse2026 from "./_components/BiharFloodResponse2026";
 import PunjabFloods2025 from "./_components/PunjabFloods2025";
 import BuildBackBetter from "./_components/BuildBackBetter";
 import AnticipatoryAction from "./_components/AnticipatoryAction";
 import WhereWeWork from "./_components/WhereWeWork";
 import StrategicGoals from "./_components/StrategicGoals";
+import PunjabProgrammes from "./_components/PunjabProgrammes";
 
 export default function WhatWeDoPage() {
+  const { region } = useRegion();
+  const isEmergency = region === "national";
+
   return (
     <>
       <WhatWeDoHero />
       <InTheField />
-      <PunjabFloods2025 />
-      <BuildBackBetter />
-      <AnticipatoryAction />
-      <Programmes />
-      <OurApproach />
-      <WhereWeWork />
-      <StrategicGoals />
+
+      {isEmergency ? (
+        <>
+          <AssamFloodResponse2026 />
+          <BiharFloodResponse2026 />
+          <PunjabFloods2025 />
+          <BuildBackBetter />
+          <AnticipatoryAction />
+          <WhereWeWork />
+          <StrategicGoals />
+        </>
+      ) : (
+        <>
+          <PunjabProgrammes />
+          <WhereWeWork />
+        </>
+      )}
     </>
   );
 }

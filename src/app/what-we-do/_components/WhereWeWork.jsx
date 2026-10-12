@@ -49,7 +49,7 @@ export default function WhereWeWork() {
               {...fadeSlide}
             >
               {isPunjab
-                ? "Punjab is Joti Foundation's founding region — the place where our youth-led response model was proven during the 2025 border floods and where all three of our core programmes are active. JF is also expanding to three additional focus regions across India."
+                ? "Punjab is Joti Foundation's founding region — shaped by two generations of family service. Here, our core community impact programmes are actively transforming lives across schools, village playgrounds, women's self-help groups, and water purification units."
                 : "Over the next decade, JF will prioritise intensive work in four disaster-prone focus regions. In parallel, JF will undertake preparedness interventions in additional states, with the flexibility to elevate these states to focus areas as needs and capacities evolve."}
             </motion.p>
           </AnimatePresence>
@@ -125,8 +125,10 @@ export default function WhereWeWork() {
               </span>
               <div className="flex flex-wrap gap-3">
                 <Chip tone="terracotta">Roshan Punjab — Eye Health</Chip>
-                <Chip tone="terracotta">Flood Response</Chip>
-                <Chip tone="terracotta">Climate Action</Chip>
+                <Chip tone="terracotta">Mera Pind Meri Khed — Youth Sports</Chip>
+                <Chip tone="terracotta">Women's Economic Independence</Chip>
+                <Chip tone="terracotta">Menstrual Hygiene</Chip>
+                <Chip tone="terracotta">Safe Drinking Water</Chip>
               </div>
             </Reveal>
           )}

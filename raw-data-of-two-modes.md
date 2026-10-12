@@ -17,7 +17,7 @@ Joti Foundation | Rekindling Hope
 ￼
 ￼
 CHILDREN’S EYE HEALTH
-— ROSHAN PUNJAB
+— ROSHAN PUNJAB (Community impact in Punjab)
 For a child, a pair of spectacles can mean far more than clearer sight; it can restore confidence,
 classroom participation and the ability to learn. Yet childhood vision problems often go unrecognised,
 with difficulty concentrating or declining classroom performance mistaken for a lack of interest in
@@ -37,7 +37,7 @@ Clearer Vision for a Brighter Future
 ￼
 ￼
 ￼
-MERA PIND MERI KHED
+MERA PIND MERI KHED (Community impact in Punjab)
 We are building a youth-led sports ecosystem across 60 villages of Sri Muktsar Sahib, aiming to reach
 over 10,000 young people and create spaces where they can play, belong, lead and aspire. Particular
 emphasis is placed on adolescent girls and young women, enabling their participation through safe,
@@ -57,7 +57,7 @@ From Playgrounds to Future Leadership
 ￼
 ECONOMIC
 INDEPENDENCE AMONG
-RURAL WOMEN:
+RURAL WOMEN: (Community impact in Punjab)
 From Craft to Confidence
 We assist rural women through self-help groups, enabling them to access credit, strengthen
 enterprise-management skills and build reliable supply chains that connect their craftsmanship with
@@ -79,7 +79,7 @@ create opportunities for other women within their communities.
 ￼
 ￼
 MENSTRUAL HYGIENE
-PROGRAMME
+PROGRAMME (Community impact in Punjab)
 Safety and Dignity for Every Woman
 Menstruation is a natural part of life, yet silence, stigma and misinformation continue to prevent
 many women and adolescent girls from managing it safely and with dignity. In Sukma, Chhattisgarh,
@@ -98,7 +98,7 @@ ensure that every woman and girl can manage menstruation safely, confidently and
 ￼
 ￼
 ￼
-SAFE DRINKING WATER
+SAFE DRINKING WATER (Community impact in Punjab)
 We approach water security as both a development priority and a cornerstone of climate resilience,
 bringing together access to safe drinking water, community purification systems, groundwater awareness
 and sustainable water management. The Foundation has mobilised and deployed six water-purification
@@ -112,7 +112,7 @@ environmental footprint of humanitarian response meeting an urgent human need wi
 additional environmental burden.
 Safe Water, Lower Disease Risk
 ￼
-ASSAM FLOOD RESPONSE 2026
+ASSAM FLOOD RESPONSE 2026 (Emergency response across India)
 In Upper Assam’s Sivasagar district, Joti Foundation mounted a community-centred flood response,
 supporting families as they moved from prolonged displacement towards return and recovery.
 Working alongside local volunteers, community representatives and government authorities, we
@@ -134,7 +134,7 @@ they face. As immediate needs gave way to the longer work of recovery, our focus
 helping families regain safer living conditions, rebuild their everyday routines and move forward with
 dignity.
 ￼
-BIHAR FLOOD RESPONSE 2026
+BIHAR FLOOD RESPONSE 2026 (Emergency response across India)
 In Bihar, our intervention began with anticipatory action, deploying teams and local volunteers to
 Munger and Khagaria after forecasts indicated rising flood risk. Communities were supported with
 early warnings, safer evacuation, movement of livestock, protection of essential documents and

@@ -1,11 +1,39 @@
 "use client";
 
+import Image from "next/image";
 import { LifeBuoy } from "lucide-react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
 import { PUNJAB_FLOODS_SCALE, PUNJAB_FLOODS_RESPONSE } from "@/lib/stats";
+
+const PUNJAB_RESPONSE_PHOTOS = [
+  {
+    src: "/images/g25.JPG",
+    alt: "Line of Joti Foundation responders wading through deep floodwater carrying relief sacks on their heads",
+    caption:
+      "Responders forming human supply chains to wade through floodwaters with relief sacks.",
+  },
+  {
+    src: "/images/d1.JPG",
+    alt: "A relief worker wades through deep floodwaters carrying emergency supply sacks",
+    caption:
+      "Navigating deep water with rescue boat backup to deliver immediate food rations.",
+  },
+  {
+    src: "/images/youth/youth-punjab-flood-rescue-child.jpg",
+    alt: "Youth responder carrying a child through floodwaters in Punjab",
+    caption:
+      "Local youth first responders evacuating vulnerable children to safe dry ground.",
+  },
+  {
+    src: "/images/g28.JPG",
+    alt: "A Joti Foundation volunteer carrying a relief supply sack beside floodwaters",
+    caption:
+      "Volunteer teams distributing household essentials door-to-door in Punjab flood zones.",
+  },
+];
 
 export default function PunjabFloods2025() {
   return (
@@ -75,6 +103,40 @@ export default function PunjabFloods2025() {
               </motion.div>
             ))}
           </dl>
+        </Reveal>
+
+        <Reveal delay={0.12} className="flex flex-col gap-6">
+          <h3 className="font-mono text-label-caps uppercase text-on-secondary/70">
+            Ground Operations in Action
+          </h3>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {PUNJAB_RESPONSE_PHOTOS.map(({ src, alt, caption }, i) => (
+              <div key={src} className="flex flex-col gap-3">
+                <motion.div
+                  className="group relative aspect-4/3 w-full overflow-hidden rounded border border-on-secondary/20 bg-black/20"
+                  whileHover="hover"
+                  initial="rest"
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0"
+                    />
+                  </motion.div>
+                </motion.div>
+                <p className="font-sans text-body-sm text-on-secondary/75">
+                  {caption}
+                </p>
+              </div>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal delay={0.15}>

@@ -1,16 +1,19 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
+import { useRegion } from "@/lib/regionContext";
 
 export default function ClosingCta() {
+  const { region } = useRegion();
+  const isEmergency = region === "national";
+
   return (
     <section className="py-section-mobile lg:py-section-desktop">
       <Container>
         <Reveal>
-          {/* rounded-3xl intentionally exceeds DESIGN.md's 4px card cap — this
-              reads as a section-level banner, not a strict card, matching the
-              softly-rounded treatment in the Home mockup. */}
           <div className="relative overflow-hidden rounded-lg bg-surface-container px-8 py-16 text-center md:px-16">
             <div
               className="pointer-events-none absolute -top-16 -right-16 h-56 w-56 rounded-full bg-outline-variant/40 md:h-72 md:w-72"
@@ -26,14 +29,20 @@ export default function ClosingCta() {
                 Ready to make a difference?
               </h2>
               <p className="max-w-xl font-sans text-body-lg text-on-surface-variant">
-                Your contribution fuels the training, equipment, and logistics
-                needed to save lives in India&rsquo;s most vulnerable moments.
+                {isEmergency
+                  ? "Your contribution fuels rapid disaster relief, mobile water purification units, and life-saving rescue across India's flood zones."
+                  : "Your contribution supports school vision screenings, youth sports ecosystems, women's economic independence, and clean water across Punjab."}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
-                <Button href={RAZORPAY_DONATE_URL} target="_blank" rel="noopener noreferrer" variant="cta">
+                <Button
+                  href={RAZORPAY_DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="cta"
+                >
                   Donate Now
                 </Button>
-                <Button href="/work-with-us" variant="ghost">
+                <Button href="/volunteer" variant="ghost">
                   Become a Volunteer
                 </Button>
               </div>

@@ -1,38 +1,44 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Container from "@/components/ui/Container";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import Reveal from "@/components/motion/Reveal";
+import { useRegion } from "@/lib/regionContext";
+import { MODES_DATA } from "@/lib/modesData";
 
-const photos = [
-  {
-    src: "/images/g10.JPG",
-    alt: "Villagers carrying boxes and bundles on their heads as they walk out through a flooded brick-walled lane",
-    caption: "Families moving belongings to higher ground as water enters the village.",
-  },
-  {
-    src: "/images/g12.JPG",
-    alt: "Joti Foundation responders in hi-vis vests talking with residents around a clipboard during a needs assessment",
-    caption: "Assessing need house by house so relief reaches the families worst hit.",
-  },
-  {
-    src: "/images/g5.JPG",
-    alt: "Responders in life jackets loading supplies into an inflatable rescue boat at a flooded riverbank",
-    caption: "Loading a rescue boat bound for villages cut off by the water.",
-  },
-];
+const fadeSlide = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+};
 
 export default function InTheField() {
+  const { region } = useRegion();
+  const currentMode = MODES_DATA[region] || MODES_DATA.national;
+  const { eyebrow, title, photos } = currentMode.whatWeDo.inTheField;
+
   return (
     <section className="py-section-mobile lg:py-section-desktop">
       <Container className="flex flex-col gap-12">
         <Reveal className="flex flex-col gap-4">
-          <SectionEyebrow>In the Field</SectionEyebrow>
-          <h2 className="max-w-2xl font-display text-headline-lg-mobile text-on-background md:text-headline-lg">
-            Flood Response, Punjab
-          </h2>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={region + "-field-eyebrow"} {...fadeSlide}>
+              <SectionEyebrow>{eyebrow}</SectionEyebrow>
+            </motion.div>
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.h2
+              key={region + "-field-title"}
+              className="max-w-2xl font-display text-headline-lg-mobile text-on-background md:text-headline-lg"
+              {...fadeSlide}
+            >
+              {title}
+            </motion.h2>
+          </AnimatePresence>
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -58,7 +64,9 @@ export default function InTheField() {
                     />
                   </motion.div>
                 </motion.div>
-                <p className="font-sans text-body-md text-on-surface-variant">{caption}</p>
+                <p className="font-sans text-body-md text-on-surface-variant">
+                  {caption}
+                </p>
               </div>
             </Reveal>
           ))}

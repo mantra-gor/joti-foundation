@@ -4,8 +4,18 @@ import { motion } from "framer-motion";
 import { useRegion } from "@/lib/regionContext";
 
 const OPTIONS = [
-  { value: "national", label: "National" },
-  { value: "punjab", label: "Punjab" },
+  {
+    value: "national",
+    label: "Emergency Response",
+    shortLabel: "Emergency",
+    title: "Emergency Response Across India",
+  },
+  {
+    value: "punjab",
+    label: "Community Impact",
+    shortLabel: "Community",
+    title: "Community Impact in Punjab",
+  },
 ];
 
 /**
@@ -18,31 +28,34 @@ const OPTIONS = [
  *   fullWidth: boolean — stretches the control to fill its container
  *              (used in the mobile menu where it should match the button width)
  */
-export default function RegionToggle({ fullWidth = false }) {
+export default function RegionToggle({ fullWidth = false, instanceId = "header" }) {
   const { region, setRegion } = useRegion();
+  const indicatorId = `region-toggle-indicator-${instanceId}`;
 
   return (
     <div
       role="group"
-      aria-label="View region"
+      aria-label="Select website mode"
       className={`relative flex items-center rounded border border-outline-variant bg-surface-container-low p-0.5 ${
         fullWidth ? "w-full" : "shrink-0"
       }`}
     >
-      {OPTIONS.map(({ value, label }) => {
+      {OPTIONS.map(({ value, label, shortLabel, title }) => {
         const isActive = region === value;
         return (
           <button
             key={value}
             type="button"
             role="radio"
+            title={title}
+            aria-label={title}
             aria-checked={isActive}
             onClick={() => setRegion(value)}
-            className={`relative z-10 cursor-pointer rounded font-mono text-label-caps uppercase transition-colors select-none px-3 py-1.5 ${
+            className={`relative z-10 cursor-pointer rounded font-mono text-[11px] sm:text-label-caps uppercase transition-colors select-none px-2.5 sm:px-3 py-1.5 ${
               fullWidth ? "flex-1 text-center" : ""
             } ${
               isActive
-                ? "text-on-primary"
+                ? "text-on-primary font-semibold"
                 : "text-on-surface-variant hover:text-on-surface"
             }`}
           >
@@ -50,13 +63,15 @@ export default function RegionToggle({ fullWidth = false }) {
                 moves it smoothly between whichever button is active. */}
             {isActive && (
               <motion.span
-                layoutId="region-toggle-indicator"
+                layoutId={indicatorId}
                 className="absolute inset-0 rounded bg-primary"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 aria-hidden="true"
               />
             )}
-            <span className="relative">{label}</span>
+            <span className="relative">
+              {fullWidth ? label : <><span className="hidden xl:inline">{label}</span><span className="xl:hidden">{shortLabel}</span></>}
+            </span>
           </button>
         );
       })}

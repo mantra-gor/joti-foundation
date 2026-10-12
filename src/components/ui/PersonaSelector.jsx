@@ -35,8 +35,8 @@ const PERSONAS = [
     eyebrow: "Disaster Relief",
     headline: "Emergency response across India",
     description:
-      "Rapid flood and disaster relief across India — including flood relief in Punjab, Assam, and critical emergency response zones.",
-    image: "/images/g5.JPG",
+      "Rapid flood and disaster relief across India — including flood relief in Punjab, Assam, Bihar, and critical emergency response zones.",
+    image: "/images/assam-flood-2026/assam-flood-community-meeting.jpg",
     imageAlt:
       "Joti Foundation emergency response teams providing flood relief across India",
     cta: { label: "Explore Emergency Response", href: "/what-we-do" },
@@ -53,10 +53,10 @@ const PERSONAS = [
     eyebrow: "Community Welfare",
     headline: "Community impact in Punjab",
     description:
-      "Focused community initiatives in Punjab — Safe Drinking Water, Children’s Eye Health — Roshan Punjab, and enduring grassroots welfare.",
-    image: "/images/c10.JPG",
+      "Focused community initiatives in Punjab — Safe Drinking Water, Children’s Eye Health — Roshan Punjab, youth sports, and women’s economic independence.",
+    image: "/images/eyes/roshan-punjab-students-spectacles-distribution.jpg",
     imageAlt:
-      "Joti Foundation volunteers distributing aid and working with community members",
+      "Students in Punjab receiving spectacles under Roshan Punjab programme",
     cta: { label: "Explore Punjab Impact", href: "/what-we-do" },
     Icon: Heart,
     accentBorder: "border-[#4d6453]",
@@ -136,7 +136,7 @@ function PersonaCard({ persona, onSelect, selectedId }) {
         isSelected
           ? `${persona.accentBorder} shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_8px_40px_rgba(0,0,0,0.5)]`
           : "border-white/15 hover:border-white/30 cursor-pointer",
-        "md:min-h-[460px] min-h-[190px]",
+        "md:h-full min-h-[190px]",
       ]
         .filter(Boolean)
         .join(" ")}
@@ -364,11 +364,12 @@ export default function PersonaSelector() {
             "border border-white/[0.10]",
             "shadow-[0_24px_80px_rgba(0,0,0,0.85)]",
 
-            /* Desktop: floating modal */
-            "md:relative md:rounded-[4px] md:w-full md:max-w-[860px] md:mx-4 md:my-auto",
+            /* Desktop: floating modal — fixed max height so it never scrolls */
+            "md:relative md:rounded-[4px] md:w-full md:max-w-[900px] md:mx-4 md:my-auto",
+            "md:flex md:flex-col md:max-h-[min(88dvh,720px)] md:overflow-hidden",
 
             /* Mobile: full-width bottom sheet / drawer */
-            "fixed bottom-0 left-0 right-0 md:static rounded-t-[16px] md:rounded-[4px] max-h-[92vh] overflow-y-auto",
+            "fixed bottom-0 left-0 right-0 md:static rounded-t-[16px] md:rounded-[4px] max-h-[92dvh] overflow-y-auto md:overflow-hidden",
           ]
             .filter(Boolean)
             .join(" ")}
@@ -412,7 +413,7 @@ export default function PersonaSelector() {
           </header>
 
           {/* Cards grid */}
-          <div className="px-4 pb-6 md:px-8 md:pb-10 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          <div className="px-4 pb-0 md:px-8 md:pb-0 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 md:flex-1 md:min-h-0">
             {PERSONAS.map((persona) => (
               <PersonaCard
                 key={persona.id}
@@ -424,7 +425,7 @@ export default function PersonaSelector() {
           </div>
 
           {/* Footer note */}
-          <div className="px-6 pb-5 md:px-10 md:pb-8 text-center">
+          <div className="px-6 py-4 md:px-10 md:py-5 text-center md:shrink-0">
             <p className="font-mono text-[10px] tracking-[0.08em] uppercase text-white/35">
               You can switch between initiatives at any time
             </p>

@@ -81,7 +81,7 @@ export default function Header() {
           {/* Toggle visible at lg+ only — at md the header is already
               crowded with 4 nav links and two action buttons. */}
           <span className="hidden lg:block">
-            <RegionToggle />
+            <RegionToggle instanceId="desktop" />
           </span>
           <Button href="/volunteer" variant="ghost" size="sm">
             Volunteer
@@ -183,7 +183,7 @@ export default function Header() {
             })}
             <div className="mt-2 flex flex-col gap-2 border-t border-outline-variant pt-3">
               {/* Full-width toggle in mobile menu — matches the button width */}
-              <RegionToggle fullWidth />
+              <RegionToggle fullWidth instanceId="mobile" />
               <Button
                 href="/work-with-us"
                 variant="ghost"

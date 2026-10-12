@@ -1,17 +1,23 @@
-import { Siren } from "lucide-react";
+"use client";
+
+import { Siren, Sparkles } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import { ACTIVE_OPERATION } from "@/lib/constants";
+import { useRegion } from "@/lib/regionContext";
+import { MODES_DATA } from "@/lib/modesData";
 
 export default function ActiveOperationBar() {
-  if (!ACTIVE_OPERATION) return null;
+  const { region } = useRegion();
+  const currentMode = MODES_DATA[region] || MODES_DATA.national;
+  const bar = currentMode.activeBar;
 
-  const { eyebrow, title, description, donateLabel, donateHref } =
-    ACTIVE_OPERATION;
+  if (!bar) return null;
+
+  const isEmergency = region === "national";
 
   return (
     <aside
-      aria-label={`${eyebrow}: ${title}`}
+      aria-label={`${bar.eyebrow}: ${bar.title}`}
       className="border-b border-on-secondary/20 bg-secondary text-on-secondary"
     >
       <Container className="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
@@ -20,21 +26,25 @@ export default function ActiveOperationBar() {
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-on-secondary/10"
             aria-hidden="true"
           >
-            <Siren size={18} strokeWidth={1.5} />
+            {isEmergency ? (
+              <Siren size={18} strokeWidth={1.5} />
+            ) : (
+              <Sparkles size={18} strokeWidth={1.5} />
+            )}
           </span>
           <div className="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:gap-3">
             <p className="font-mono text-label-caps whitespace-nowrap uppercase text-on-secondary/70">
-              {eyebrow}
+              {bar.eyebrow}
             </p>
             <p className="font-sans text-body-md">
-              <span className="font-semibold uppercase">{title}</span>
-              <span className="text-on-secondary/85"> — {description}</span>
+              <span className="font-semibold uppercase">{bar.title}</span>
+              <span className="text-on-secondary/85"> — {bar.description}</span>
             </p>
           </div>
         </div>
 
         <Button
-          href={donateHref}
+          href={bar.donateHref}
           target="_blank"
           rel="noopener noreferrer"
           variant="cta"
@@ -42,7 +52,7 @@ export default function ActiveOperationBar() {
           size="sm"
           className="self-start text-center lg:shrink-0 lg:self-auto"
         >
-          {donateLabel}
+          {bar.donateLabel}
         </Button>
       </Container>
     </aside>

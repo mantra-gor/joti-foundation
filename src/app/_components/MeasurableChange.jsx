@@ -1,17 +1,26 @@
 "use client";
 
-import { Heart, Timer } from "lucide-react";
+import { Heart, Timer, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import { RAZORPAY_DONATE_URL } from "@/lib/constants";
 import { useRegion } from "@/lib/regionContext";
-import { IMPACT_STATS, IMPACT_STATS_PUNJAB } from "@/lib/stats";
+import { MODES_DATA } from "@/lib/modesData";
+
+const fadeSlide = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+};
 
 export default function MeasurableChange() {
   const { region } = useRegion();
-  const impactStats = region === "punjab" ? IMPACT_STATS_PUNJAB : IMPACT_STATS;
+  const currentMode = MODES_DATA[region] || MODES_DATA.national;
+  const mc = currentMode.measurableChange;
+  const isEmergency = region === "national";
 
   return (
     <section className="relative overflow-hidden bg-secondary py-section-mobile lg:py-section-desktop">
@@ -22,13 +31,25 @@ export default function MeasurableChange() {
 
       <Container className="relative grid gap-12 lg:grid-cols-2 lg:items-center">
         <Reveal className="flex flex-col gap-6">
-          <h2 className="font-display text-headline-lg-mobile text-on-secondary md:text-headline-lg">
-            Measurable Change
-          </h2>
-          <p className="max-w-md font-sans text-body-lg text-on-secondary/85">
-            Our impact isn&rsquo;t just in the numbers; it&rsquo;s in the
-            silence after the storm where preparation meets purpose.
-          </p>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.h2
+              key={region + "-mc-heading"}
+              className="font-display text-headline-lg-mobile text-on-secondary md:text-headline-lg"
+              {...fadeSlide}
+            >
+              {mc.heading}
+            </motion.h2>
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.p
+              key={region + "-mc-desc"}
+              className="max-w-md font-sans text-body-lg text-on-secondary/85"
+              {...fadeSlide}
+            >
+              {mc.description}
+            </motion.p>
+          </AnimatePresence>
 
           <motion.div
             className="flex items-center gap-4 rounded border border-on-secondary/20 bg-on-secondary/5 p-5"
@@ -36,14 +57,18 @@ export default function MeasurableChange() {
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
           >
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded bg-on-secondary/10 text-on-secondary">
-              <Timer size={22} strokeWidth={1.5} aria-hidden="true" />
+              {isEmergency ? (
+                <Timer size={22} strokeWidth={1.5} aria-hidden="true" />
+              ) : (
+                <Award size={22} strokeWidth={1.5} aria-hidden="true" />
+              )}
             </span>
             <div className="flex flex-col gap-1">
               <span className="font-mono text-label-caps uppercase text-on-secondary/70">
-                Response Time
+                {mc.highlightBox.label}
               </span>
               <span className="font-sans text-body-md font-semibold text-on-secondary">
-                Rescue and relief starting from the first 24 hours
+                {mc.highlightBox.text}
               </span>
             </div>
           </motion.div>
@@ -56,7 +81,7 @@ export default function MeasurableChange() {
             inverse
             className="w-fit"
           >
-            Support Their Training{" "}
+            {isEmergency ? "Support Emergency Relief" : "Support Punjab Impact"}{" "}
             <Heart size={18} strokeWidth={1.5} aria-hidden="true" />
           </Button>
         </Reveal>
@@ -64,7 +89,7 @@ export default function MeasurableChange() {
         <Reveal delay={0.15}>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded border border-on-secondary/20 bg-on-secondary/20">
             <AnimatePresence initial={false}>
-              {impactStats.map(({ value, label }, index) => (
+              {mc.stats.map(({ value, label }, index) => (
                 <motion.div
                   key={region + "-" + label}
                   className="flex flex-col-reverse gap-2 bg-secondary p-6"

@@ -14,64 +14,61 @@
  */
 const STAT = {
   responseTime: { value: "Under 24h", label: "Response Time" },
-  floodBeneficiaries: { value: "25,000+", label: "People Reached" },
-  spectacles: { value: "10,000+", label: "Spectacles Provided" },
-  safeWaterUsers: { value: "30,000", label: "Daily Safe Water Users" },
+  floodBeneficiaries: { value: "25,000+", label: "People Reached in Floods" },
+  spectacles: { value: "30,723", label: "Corrective Spectacles Distributed" },
+  safeWaterAssam: { value: "100,000+ L", label: "Safe Drinking Water Supplied" },
+  assamFamilies: { value: "2,450", label: "Families Supported (Assam)" },
+  biharFamilies: { value: "500", label: "Families Supported (Bihar)" },
   childrenScreened: {
-    value: "250,000+",
-    label: "Children Screened - Eyes Health",
+    value: "353,349",
+    label: "Children Screened — Roshan Punjab",
   },
   activeVolunteers: { value: "100+", label: "Joti Volunteers" },
-  borderVillages: { value: "20+", label: "Border Villages Served In Punjab" },
+  borderVillages: { value: "20+", label: "Border Villages Served in Punjab" },
   continuousRescue: { value: "25+", label: "Days Continuous Rescue" },
-  assamVillages: {
-    value: "10",
-    label: "Villages in Sivasagar District, Assam",
-  },
+  waterUnits: { value: "6 Units", label: "Water Purification Systems (₹40L)" },
+  youthMuktsar: { value: "60 Villages", label: "Mera Pind Meri Khed Sports" },
+  truckDrivers: { value: "6,407", label: "Drivers & Community Vision Support" },
 };
 
-/** Home hero strip — the four figures that carry the most weight above the fold. */
+/** Home hero strip — Emergency Response Across India */
 export const HEADLINE_STATS = [
   STAT.responseTime,
+  STAT.safeWaterAssam,
   STAT.floodBeneficiaries,
-  // STAT.childrenScreened,
-  STAT.safeWaterUsers,
   STAT.activeVolunteers,
 ];
 
 /**
- * Punjab view: hero strip — leads with the two biggest Punjab-programme
- * figures (Roshan Punjab children screening + flood beneficiaries).
+ * Punjab view: hero strip — Community Impact in Punjab
  */
 export const HEADLINE_STATS_PUNJAB = [
-  STAT.floodBeneficiaries,
   STAT.childrenScreened,
   STAT.spectacles,
-  STAT.activeVolunteers,
+  STAT.youthMuktsar,
+  STAT.waterUnits,
 ];
 
-/** Full cross-programme impact set, "Volunteers, Impact & Stories from the Field". */
+/** Full cross-programme impact set, Emergency Response Across India */
 export const IMPACT_STATS = [
-  // STAT.floodBeneficiaries,
-  STAT.childrenScreened,
-  STAT.spectacles,
-  // STAT.safeWaterUsers,
-  STAT.activeVolunteers,
-  STAT.borderVillages,
+  STAT.safeWaterAssam,
+  STAT.assamFamilies,
+  STAT.biharFamilies,
+  STAT.floodBeneficiaries,
   STAT.continuousRescue,
-  STAT.assamVillages,
+  STAT.activeVolunteers,
 ];
 
 /**
- * Punjab view: impact set — drops the Assam stat (national expansion)
- * so donors see only Punjab-rooted numbers.
+ * Punjab view: impact set — Community Impact in Punjab
  */
 export const IMPACT_STATS_PUNJAB = [
   STAT.childrenScreened,
   STAT.spectacles,
+  STAT.youthMuktsar,
+  STAT.waterUnits,
+  STAT.truckDrivers,
   STAT.activeVolunteers,
-  STAT.borderVillages,
-  STAT.continuousRescue,
 ];
 
 /** Punjab Floods 2025 — the scale of the crisis JF responded to. */
