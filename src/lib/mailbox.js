@@ -3,14 +3,7 @@ import axios from "axios";
 /**
  * Client for the Laravel mailbox app (staff triage panel at its `/admin`).
  * Server-only: `MAILBOX_API_TOKEN` must never reach the browser, so this is
- * only ever imported from Route Handlers.
- *
- * The mailbox is an *additional* write, never a replacement for the
- * notification email. Every helper here is best-effort: it logs and resolves
- * rather than throwing, so a mailbox outage can't turn into an error response
- * for a visitor whose enquiry has already been delivered by email. For the
- * same reason there are no retries — the email is out, and a retry loop is the
- * one thing likely to trip the mailbox's 60 req/min rate limit.
+ * only ever imported from Route Handlers and Server Actions.
  */
 
 let client;
@@ -22,8 +15,7 @@ function getClient() {
   if (!client) {
     client = axios.create({
       baseURL: `${MAILBOX_URL.replace(/\/$/, "")}/api/v1`,
-      // The visitor is waiting on the form response and this is the least
-      // important thing happening in that request.
+      // The visitor is waiting on the form response.
       timeout: 5000,
       headers: {
         Authorization: `Bearer ${MAILBOX_API_TOKEN}`,
@@ -35,12 +27,10 @@ function getClient() {
 }
 
 /**
- * `rethrow` is for the one caller with no email behind it (newsletter signup):
- * there, a swallowed failure means telling a visitor they've subscribed when
- * nothing was recorded anywhere. Everywhere else the email is the guarantee and
- * this write is the extra, so the default stays best-effort.
+ * Post to the mailbox backend. Rethrows errors by default so callers can communicate
+ * failure to the visitor.
  */
-async function post(path, body, { rethrow = false } = {}) {
+async function post(path, body, { rethrow = true } = {}) {
   const mailbox = getClient();
   if (!mailbox) {
     console.warn(
@@ -80,12 +70,7 @@ export function recordSubmission(type, fields) {
 
 /**
  * Add an address to the mailing list. Idempotent on the mailbox side.
- *
- * The exception to the best-effort rule above: newsletter signup sends no
- * notification email, so the mailbox is the only record of it. This rejects on
- * failure so the form can say so rather than claiming a subscription that
- * doesn't exist.
  */
 export function recordNewsletterSubscriber(email) {
-  return post("/newsletter/subscribe", { email }, { rethrow: true });
+  return post("/newsletter/subscribe", { email });
 }

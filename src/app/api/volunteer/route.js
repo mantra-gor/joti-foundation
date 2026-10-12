@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { sendMail } from "@/lib/mailer";
 import { recordSubmission } from "@/lib/mailbox";
 import { trimValues, validateForm } from "@/lib/validation";
 import { VOLUNTEER_SCHEMA } from "@/app/volunteer/volunteerFields";
@@ -15,25 +14,18 @@ export async function POST(request) {
   }
 
   const { name, email, phone, city, country, preference, message } = values;
-
-  // Everything past the phone number is optional, so the body has to read
-  // sensibly with all of it missing.
-  const location = [city, country].filter(Boolean).join(", ");
   const subject = `Volunteer application: ${name}`;
 
   try {
-    await sendMail({
+    await recordSubmission("volunteer", {
+      name,
+      email,
+      phone,
       subject,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Location: ${location || "—"}`,
-        `Preference: ${preference || "—"}`,
-        "",
-        message || "(no message)",
-      ].join("\n"),
-      replyTo: email,
+      message,
+      city,
+      country,
+      preference,
     });
   } catch {
     return NextResponse.json(
@@ -41,20 +33,6 @@ export async function POST(request) {
       { status: 500 }
     );
   }
-
-  // `city` / `country` / `preference` aren't mailbox columns — they land in the
-  // row's `payload`, so this needed no change on the mailbox side.
-  // Already delivered by email — this extra write must never reach the visitor.
-  await recordSubmission("volunteer", {
-    name,
-    email,
-    phone,
-    subject,
-    message,
-    city,
-    country,
-    preference,
-  });
 
   return NextResponse.json({ ok: true });
 }
